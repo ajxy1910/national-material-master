@@ -14,7 +14,7 @@ An AI-driven enterprise material master standardization, harmonization, deduplic
 
 ---
 
-## 🌟 Key Capabilities
+## Key Capabilities
 
 1. **AI Material Matching & Recommendation Engine**:
    - NLP-driven abbreviation normalizer expanding 100+ industrial shorthands (`SMLS`, `FLGD`, `CS`, `WCB`, `OS&Y`, `NB`, `DGBB`, `XLPE`).
@@ -53,7 +53,7 @@ An AI-driven enterprise material master standardization, harmonization, deduplic
 
 ---
 
-## 🚀 Quick Start Guide
+##  Quick Start Guide
 
 ### 1. Requirements
 - Python 3.10+ (Tested on Python 3.14)
@@ -88,7 +88,7 @@ python cli.py harmonize data/sample_legacy_upload.csv --output harmonized_catalo
 
 ---
 
-## 📡 REST API Reference
+## REST API Reference
 
 | Endpoint | Method | Description |
 |---|---|---|
@@ -108,7 +108,7 @@ python cli.py harmonize data/sample_legacy_upload.csv --output harmonized_catalo
 
 ---
 
-## 🏛️ Architecture & Folder Structure
+##  Architecture & Folder Structure
 
 ```
 national-material-master/

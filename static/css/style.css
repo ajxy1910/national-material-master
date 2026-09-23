@@ -7,7 +7,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap');
 
 :root {
-  /* Core Palette – ISRO Government Portal */
   --navy-dark: #0A1628;
   --navy-mid: #0D2149;
   --navy-light: #1A3A6E;
@@ -65,9 +64,7 @@
   --transition-slow: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* =========================================================
-   RESET & BASE
-   ========================================================= */
+
 *,
 *::before,
 *::after {
@@ -90,7 +87,6 @@ body {
   font-size: 14px;
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
@@ -109,9 +105,7 @@ body {
   background: var(--navy-accent);
 }
 
-/* =========================================================
-   FLASH NEWS TICKER (ISRO-style yellow band)
-   ========================================================= */
+
 .flash-ticker {
   background: var(--navy-dark);
   border-bottom: 2px solid var(--saffron);
@@ -157,9 +151,6 @@ body {
   }
 }
 
-/* =========================================================
-   HEADER BANNER
-   ========================================================= */
 .header-banner {
   background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-mid) 60%, var(--navy-light) 100%);
   position: sticky;
@@ -168,7 +159,6 @@ body {
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
 }
 
-/* Top Gov Strip */
 .top-gov-strip {
   display: flex;
   justify-content: space-between;
@@ -215,7 +205,6 @@ body {
   color: var(--saffron-light);
 }
 
-/* Header Main */
 .header-main {
   display: flex;
   justify-content: space-between;
@@ -306,9 +295,7 @@ body {
   }
 }
 
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
+
 .nav-container {
   background: var(--navy-mid);
   border-bottom: 3px solid var(--saffron);
@@ -362,9 +349,6 @@ body {
   font-weight: 700;
 }
 
-/* =========================================================
-   MAIN CONTENT
-   ========================================================= */
 .main-content {
   padding: 1.75rem 2rem 3rem;
   max-width: 1500px;
@@ -392,9 +376,7 @@ body {
   }
 }
 
-/* =========================================================
-   PAGE SECTION HEADER
-   ========================================================= */
+
 .section-hero {
   background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-mid) 100%);
   border-radius: var(--radius-lg);
@@ -419,9 +401,6 @@ body {
   margin-top: 0.2rem;
 }
 
-/* =========================================================
-   KPI CARDS
-   ========================================================= */
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -519,9 +498,6 @@ body {
   font-weight: 700;
 }
 
-/* =========================================================
-   LAYOUT GRIDS
-   ========================================================= */
 .grid-2col {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -556,9 +532,7 @@ body {
   }
 }
 
-/* =========================================================
-   GLASS / WHITE PANELS
-   ========================================================= */
+
 .glass-panel {
   background: var(--bg-white);
   border: 1px solid var(--border);
@@ -596,9 +570,7 @@ body {
   align-items: center;
 }
 
-/* =========================================================
-   BUTTONS
-   ========================================================= */
+
 .btn {
   font-family: inherit;
   font-size: 0.82rem;
@@ -670,9 +642,7 @@ body {
   padding: 0.3rem 0.7rem;
 }
 
-/* =========================================================
-   CPSE BADGES
-   ========================================================= */
+
 .cpse-badge {
   display: inline-flex;
   align-items: center;
@@ -746,9 +716,6 @@ body {
   border-color: #FCD34D;
 }
 
-/* =========================================================
-   CNMC TAG
-   ========================================================= */
 .cnmc-tag {
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -763,9 +730,7 @@ body {
   gap: 0.35rem;
 }
 
-/* =========================================================
-   STATUS PILLS
-   ========================================================= */
+
 .status-pill {
   display: inline-flex;
   align-items: center;
@@ -808,9 +773,7 @@ body {
   border: 1px solid #FCA5A5;
 }
 
-/* =========================================================
-   DATA TABLES
-   ========================================================= */
+
 .data-table-container {
   overflow-x: auto;
   border-radius: var(--radius-md);
@@ -862,9 +825,7 @@ body {
   background: #EFF6FF;
 }
 
-/* =========================================================
-   AI SEARCH / INPUT
-   ========================================================= */
+
 .ai-search-box {
   display: flex;
   gap: 0.75rem;
@@ -889,9 +850,7 @@ body {
   box-shadow: 0 0 0 3px rgba(30, 77, 155, 0.12);
 }
 
-/* =========================================================
-   MATCH CARDS
-   ========================================================= */
+
 .match-card {
   background: var(--bg-white);
   border: 1px solid var(--border);
@@ -933,9 +892,7 @@ body {
   font-weight: 600;
 }
 
-/* =========================================================
-   ATTRIBUTE CHIPS
-   ========================================================= */
+
 .attr-chip-grid {
   display: flex;
   flex-wrap: wrap;
@@ -957,9 +914,7 @@ body {
   font-weight: 600;
 }
 
-/* =========================================================
-   SAVINGS CALCULATOR
-   ========================================================= */
+
 .calc-card {
   background: #EFF6FF;
   border: 1px solid #BFDBFE;
@@ -1014,9 +969,6 @@ body {
   margin-top: 0.2rem;
 }
 
-/* =========================================================
-   MODALS
-   ========================================================= */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -1095,9 +1047,6 @@ body {
   border-color: var(--red-alert);
 }
 
-/* =========================================================
-   DIFF TABLE
-   ========================================================= */
 .diff-table {
   width: 100%;
   border-collapse: collapse;
@@ -1135,9 +1084,6 @@ body {
   font-weight: 600;
 }
 
-/* =========================================================
-   DROPZONE
-   ========================================================= */
 .dropzone {
   border: 2px dashed var(--border);
   border-radius: var(--radius-lg);
@@ -1154,9 +1100,7 @@ body {
   background: #EFF6FF;
 }
 
-/* =========================================================
-   CODE PREVIEW BOX
-   ========================================================= */
+
 .code-preview-box {
   background: var(--navy-dark);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1171,9 +1115,6 @@ body {
   line-height: 1.55;
 }
 
-/* =========================================================
-   QUICK CHIP BUTTONS
-   ========================================================= */
 .quick-chips {
   display: flex;
   gap: 0.45rem;
@@ -1199,9 +1140,6 @@ body {
   border-color: var(--navy-accent);
 }
 
-/* =========================================================
-   CPSE DISTRIBUTION BARS
-   ========================================================= */
 .cpse-bar-row {
   display: flex;
   align-items: center;
@@ -1243,9 +1181,6 @@ body {
   font-size: 0.75rem;
 }
 
-/* =========================================================
-   AUDIT TRAIL TIMELINE
-   ========================================================= */
 .audit-item {
   display: flex;
   gap: 1rem;
@@ -1278,9 +1213,6 @@ body {
   font-family: var(--font-mono);
 }
 
-/* =========================================================
-   CLUSTER ACCORDION
-   ========================================================= */
 .cluster-item {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -1338,9 +1270,6 @@ body {
   display: block;
 }
 
-/* =========================================================
-   ACCORDION TOGGLE ICON
-   ========================================================= */
 .toggle-icon {
   transition: transform 0.2s ease;
   color: var(--text-muted);
@@ -1352,9 +1281,6 @@ body {
   color: #fff;
 }
 
-/* =========================================================
-   THEME SELECTOR (retain minimal styling)
-   ========================================================= */
 #theme-selector {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -1368,9 +1294,6 @@ body {
   border-radius: var(--radius-xs);
 }
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
 footer {
   background: var(--navy-dark);
   color: var(--text-navy-sub);
@@ -1393,9 +1316,6 @@ footer a {
   text-decoration: none;
 }
 
-/* =========================================================
-   UTILITY CLASSES
-   ========================================================= */
 .text-navy {
   color: var(--navy-dark) !important;
 }
@@ -1431,14 +1351,12 @@ footer a {
   color: var(--text-muted);
 }
 
-/* Select / Textarea in light mode */
 select.input-text,
 textarea.input-text {
   background: var(--bg-white);
   color: var(--text-body);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .header-main {
     flex-direction: column;
@@ -1469,49 +1387,61 @@ textarea.input-text {
   }
 }
 
-//* Language Switcher Outer Border Container */
-.lang-switch-container {
+.lang-toggle-btn {
   display: inline-flex;
   align-items: center;
-  background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 25px;
-  padding: 2px;
-  gap: 2px;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(5, 24, 52, 0.9);
+  border: 1px solid rgba(150, 190, 230, 0.35);
+  border-radius: 28px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Base Button Style */
-.lang-pill {
-  background: transparent;
+.lang-toggle-btn .lang-tab {
   border: none;
+  background: transparent;
   color: #ffffff;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.lang-pill:hover {
-  opacity: 0.85;
-}
-
-/* Active Highlight Button Style (Bright Blue) */
-.lang-pill.active {
-  background-color: #007bff;
-  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 24px;
+  font-size: 17px;
   font-weight: 600;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
 }
 
-/* Hide Google Translate top banner & iframe styling issues */
+.lang-toggle-btn .lang-tab:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.lang-toggle-btn .lang-tab.active {
+  background: #087ff5;
+  color: #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 126, 255, 0.35);
+}
+
+.lang-toggle-btn .lang-tab:last-child {
+  font-family: "Noto Sans Devanagari", "Nirmala UI", sans-serif;
+}
+
+.lang-toggle-btn .lang-tab:focus-visible {
+  outline: 2px solid #4da3ff;
+  outline-offset: 2px;
+}
+
+
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+body>.skiptranslate {
+  display: none !important;
+}
+
 body {
   top: 0 !important;
-}
-
-.goog-te-banner-frame {
-  display: none !important;
 }
 
 .goog-te-balloon-frame {
@@ -1520,4 +1450,12 @@ body {
 
 #goog-gt-tt {
   display: none !important;
+}
+
+.goog-te-gadget {
+  font-size: 0 !important;
+}
+
+html {
+  margin-top: 0 !important;
 }

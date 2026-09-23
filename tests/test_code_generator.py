@@ -16,14 +16,11 @@ def test_cnmc_generation():
     cnmc = code_generator.generate_cnmc(attrs)
     assert cnmc.startswith("IN-NMC-8481-VLVG-100-WCB-")
     
-    # Check valid check digit
     is_valid, msg = code_generator.validate_cnmc(cnmc)
     assert is_valid is True
     assert msg == "Valid Common National Material Code"
 
 def test_cnmc_validation_invalid_tampered_digit():
-    # Correct code is IN-NMC-8481-VLVG-100-WCB-4
-    # Let's change the check digit to 9
     tampered_code = "IN-NMC-8481-VLVG-100-WCB-9"
     is_valid, msg = code_generator.validate_cnmc(tampered_code)
     assert is_valid is False

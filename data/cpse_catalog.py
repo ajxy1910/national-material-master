@@ -4,9 +4,7 @@ Illustrates duplication, fragmented naming, code divergence, and procurement cos
 """
 
 CPSE_RAW_MATERIALS = [
-    # -------------------------------------------------------------
-    # CLUSTER 1: Gate Valve 4" 150# CS A216 WCB Flanged RF OS&Y
-    # -------------------------------------------------------------
+    
     {
         "id": "MAT-001",
         "cpse": "ONGC",
@@ -78,9 +76,7 @@ CPSE_RAW_MATERIALS = [
         "status": "ACTIVE"
     },
 
-    # -------------------------------------------------------------
-    # CLUSTER 2: Seamless Pipe 6" SCH 40 ASTM A106 Gr B Bevelled End
-    # -------------------------------------------------------------
+    
     {
         "id": "MAT-006",
         "cpse": "IOCL",
@@ -152,9 +148,7 @@ CPSE_RAW_MATERIALS = [
         "status": "ACTIVE"
     },
 
-    # -------------------------------------------------------------
-    # CLUSTER 3: Deep Groove Ball Bearing 6310-2RS C3 (50x110x27 mm)
-    # -------------------------------------------------------------
+    
     {
         "id": "MAT-011",
         "cpse": "BHEL",
@@ -226,9 +220,7 @@ CPSE_RAW_MATERIALS = [
         "status": "ACTIVE"
     },
 
-    # -------------------------------------------------------------
-    # CLUSTER 4: 11kV XLPE Cable 3 Core x 240 sq.mm Aluminium Armoured
-    # -------------------------------------------------------------
+    
     {
         "id": "MAT-016",
         "cpse": "POWERGRID",
@@ -286,9 +278,7 @@ CPSE_RAW_MATERIALS = [
         "status": "ACTIVE"
     },
 
-    # -------------------------------------------------------------
-    # CLUSTER 5: Weld Neck Flange 4" Class 150 SCH 40 ASTM A105 RF
-    # -------------------------------------------------------------
+    
     {
         "id": "MAT-020",
         "cpse": "ONGC",
@@ -346,9 +336,7 @@ CPSE_RAW_MATERIALS = [
         "status": "ACTIVE"
     },
 
-    # -------------------------------------------------------------
-    # CLUSTER 6: Heavy Conveyor Belting 1200mm NN 4-Ply 800/4 (5+2 DIN-X)
-    # -------------------------------------------------------------
+   
     {
         "id": "MAT-024",
         "cpse": "COAL_INDIA",
@@ -406,9 +394,7 @@ CPSE_RAW_MATERIALS = [
         "status": "ACTIVE"
     },
 
-    # -------------------------------------------------------------
-    # CLUSTER 7: Spiral Wound Gasket 4" 150# SS316 with Flexible Graphite
-    # -------------------------------------------------------------
+    
     {
         "id": "MAT-028",
         "cpse": "IOCL",
@@ -452,9 +438,7 @@ CPSE_RAW_MATERIALS = [
         "status": "ACTIVE"
     },
 
-    # -------------------------------------------------------------
-    # STANDALONE / UNHARMONIZED ITEMS REQUIRING MATCHING / REVIEW
-    # -------------------------------------------------------------
+   
     {
         "id": "MAT-031",
         "cpse": "BHEL",
@@ -555,8 +539,6 @@ CPSE_RAW_MATERIALS = [
     }
 ]
 
-# Standard Common National Material Master Definitions
-# Formed by consolidating and harmonizing the clusters above
 NATIONAL_MASTER_CATALOG = [
     {
         "cnmc": "IN-NMC-8481-VLVG-100-WCB-4",

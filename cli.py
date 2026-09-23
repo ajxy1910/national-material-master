@@ -17,9 +17,9 @@ from data.cpse_catalog import NATIONAL_MASTER_CATALOG, CPSE_RAW_MATERIALS
 
 def cmd_match(args):
     """Match a free-text description against National Material Masters."""
-    print(f"\n🔍 Searching National Master for: '{args.description}' (Threshold: {args.threshold}%)\n")
+    print(f"\n Searching National Master for: '{args.description}' (Threshold: {args.threshold}%)\n")
     attrs = ai_engine.extract_attributes(args.description)
-    print("📋 Parsed Engineering Attributes:")
+    print(" Parsed Engineering Attributes:")
     for k, v in attrs.items():
         if k != "normalized_text" and v and v != "N/A":
             print(f"  • {k.replace('_', ' ').title()}: {v}")
@@ -31,12 +31,12 @@ def cmd_match(args):
     )
 
     if not matches:
-        print("\n❌ No National Masters found above threshold.")
+        print("\n No National Masters found above threshold.")
         proposed_code = code_generator.generate_cnmc(attrs)
-        print(f"💡 Recommended New Common National Material Code: {proposed_code}\n")
+        print(f" Recommended New Common National Material Code: {proposed_code}\n")
         return
 
-    print(f"\n✅ Found {len(matches)} Matching National Material Master(s):")
+    print(f"\n Found {len(matches)} Matching National Material Master(s):")
     for i, m in enumerate(matches, 1):
         master = m["national_master"]
         print(f"\n[{i}] {master['cnmc']} | Score: {m['confidence_pct']}% | Type: {m['match_type']}")
@@ -47,19 +47,19 @@ def cmd_match(args):
 
 def cmd_standardize(args):
     """Parse text and generate standardized descriptions and Common National Code."""
-    print(f"\n⚙️  Standardizing description: '{args.text}'\n")
+    print(f"\n Standardizing description: '{args.text}'\n")
     attrs = ai_engine.extract_attributes(args.text)
     descs = ai_engine.build_standardized_descriptions(attrs)
     cnmc = code_generator.generate_cnmc(attrs)
     valid, msg = code_generator.validate_cnmc(cnmc)
 
-    print("🏷️  Common National Material Code (CNMC):", cnmc)
-    print("🛡️  Validation Status:", "VALID" if valid else f"INVALID ({msg})")
-    print("\n📝 Formatted Master Description:")
+    print("  Common National Material Code (CNMC):", cnmc)
+    print("  Validation Status:", "VALID" if valid else f"INVALID ({msg})")
+    print("\nFormatted Master Description:")
     print("   ", descs["standard_master"])
-    print("\n🏢 SAP 40-Character Short Description (MARA-MAKTX):")
+    print("\n SAP 40-Character Short Description (MARA-MAKTX):")
     print(f"    '{descs['sap_short_desc']}' ({len(descs['sap_short_desc'])} chars)")
-    print("\n🌐 GeM e-Procurement Long Description:")
+    print("\n GeM e-Procurement Long Description:")
     print("   ", descs["gem_long_desc"])
     print()
 
@@ -123,28 +123,24 @@ def cmd_harmonize(args):
         writer.writeheader()
         writer.writerows(results)
 
-    print(f"✅ Successfully harmonized and saved to: {output_file}\n")
+    print(f"Successfully harmonized and saved to: {output_file}\n")
 
 def main():
     parser = argparse.ArgumentParser(description="National Unified Material Master CLI ('One Nation – One Material Code')")
     subparsers = parser.add_subparsers(dest="command", help="Available subcommands")
 
-    # Match subcommand
     p_match = subparsers.add_parser("match", help="Match material text against National Master")
     p_match.add_argument("description", type=str, help="Raw material description text")
     p_match.add_argument("--threshold", type=float, default=60.0, help="Minimum similarity threshold")
     p_match.set_defaults(func=cmd_match)
 
-    # Standardize subcommand
     p_std = subparsers.add_parser("standardize", help="Standardize description & generate National Code")
     p_std.add_argument("text", type=str, help="Raw material description text")
     p_std.set_defaults(func=cmd_standardize)
 
-    # Stats subcommand
     p_stats = subparsers.add_parser("stats", help="Show executive metrics & rationalization rate")
     p_stats.set_defaults(func=cmd_stats)
 
-    # Harmonize subcommand
     p_harm = subparsers.add_parser("harmonize", help="Batch harmonize legacy CSV file")
     p_harm.add_argument("input_file", type=str, help="Path to input CSV file")
     p_harm.add_argument("--output", type=str, default="harmonized_output.csv", help="Path to output CSV")

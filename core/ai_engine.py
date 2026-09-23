@@ -33,10 +33,8 @@ class AIEngine:
         if not text:
             return ""
         normalized = text.strip()
-        # Expand known CPSE industrial abbreviations
         for regex, replacement in self.abbreviation_patterns:
             normalized = regex.sub(replacement, normalized)
-        # Normalize punctuation and spacing
         normalized = re.sub(r'[,;:\/\\]', ' ', normalized)
         normalized = re.sub(r'\s+', ' ', normalized).strip().upper()
         return normalized
@@ -61,7 +59,6 @@ class AIEngine:
             "normalized_text": norm
         }
 
-        # 1. Category and Item Type Detection
         if re.search(r'\bGATE VALVE\b|\bGT VLV\b|\bVALVE GATE\b|\bGATE\b.*\bVALVE\b', norm):
             extracted["category"] = "VALVES"
             extracted["item_type"] = "GATE VALVE"
@@ -98,14 +95,12 @@ class AIEngine:
             extracted["category"] = "FLANGES_FITTINGS"
             extracted["item_type"] = "SPIRAL WOUND GASKET"
 
-        # 2. Size / Dimension Extraction
         size_match = re.search(r'(\d+[\.\/]?\d*)\s*(INCH|\"|IN\b|MM\s*NB|NB\b|MM\b)', raw_upper)
         if size_match:
             val, unit = size_match.groups()
             if "INCH" in unit or "\"" in unit or unit == "IN":
                 try:
                     num_val = float(val) if "/" not in val else eval(val)
-                    # Standard Nominal Bore (NB) mapping for process piping
                     nb_standard_map = {
                         0.5: 15, 0.75: 20, 1.0: 25, 1.25: 32, 1.5: 40,
                         2.0: 50, 2.5: 65, 3.0: 80, 4.0: 100, 5.0: 125,
@@ -135,7 +130,6 @@ class AIEngine:
             extracted["size"] = "3C X 240 SQ.MM"
             extracted["size_numeric_mm"] = 240
 
-        # 3. Pressure Rating / Class / Schedule / Voltage Extraction
         rating_match = re.search(r'(CLASS\s*\d+|ASME\s*\d+#?|\d+#|\d+\s*LBS|SCH\s*\d+[A-Z]?|SCHEDULE\s*\d+|11\s*KV|33\s*KV|800\/4)', norm)
         if rating_match:
             extracted["rating"] = rating_match.group(1).upper()
@@ -151,7 +145,6 @@ class AIEngine:
         elif re.search(r'\b11\s*KV\b', raw_upper):
             extracted["rating"] = "11 KV"
 
-        # 4. Material Grade Extraction
         if re.search(r'ASTM\s*A216\s*(GR\s*)?WCB|WCB\b', norm):
             extracted["material_grade"] = "ASTM A216 GR WCB"
         elif re.search(r'ASTM\s*A106\s*(GR\s*)?B|A106-B\b|A106B\b', norm):
@@ -167,7 +160,6 @@ class AIEngine:
         elif re.search(r'NYLON-NYLON|NN FABRIC|NN 4-PLY', norm):
             extracted["material_grade"] = "NYLON-NYLON (NN) FABRIC + GRADE X"
 
-        # 5. End Connection / Interface Extraction
         if re.search(r'FLANGED.*RAISED FACE|FLGD.*RF|RF ENDS|RAISED FACE', norm):
             extracted["end_connection"] = "FLANGED RAISED FACE (RF)"
         elif re.search(r'BEVELLED END|BE ENDS|BEV\b|BW\b|BUTT WELD', norm):
@@ -177,7 +169,6 @@ class AIEngine:
         elif re.search(r'ARMOURED|FLAT STEEL WIRE', norm):
             extracted["end_connection"] = "STEEL WIRE ARMOURED"
 
-        # 6. Standards Extraction
         std_match = re.search(r'(API\s*600|API\s*6D|ASME\s*B16\.5|ASME\s*B16\.34|ASME\s*B36\.10M?|IS\s*7098|DIN\s*22102|IS\s*1891|ASME\s*B16\.20)', norm)
         if std_match:
             extracted["standard"] = std_match.group(1).upper()
@@ -211,7 +202,6 @@ class AIEngine:
         parts = [p for p in [item_type, size, rating, grade, end_conn, standard] if p and p != "N/A"]
         standard_master = ", ".join(parts)
 
-        # SAP 40-character Short Description
         short_tokens = []
         if "GATE" in item_type:
             short_tokens.append("VLV GATE")
@@ -228,7 +218,6 @@ class AIEngine:
         else:
             short_tokens.append(item_type[:8])
 
-        # Add size
         if "100MM" in size or "4" in size:
             short_tokens.append("100NB")
         elif "150MM" in size or "6" in size:
@@ -240,7 +229,6 @@ class AIEngine:
         elif "240" in size:
             short_tokens.append("3CX240")
 
-        # Add rating
         if "150" in rating:
             short_tokens.append("150#")
         elif "300" in rating:
@@ -248,7 +236,6 @@ class AIEngine:
         elif "SCH 40" in rating:
             short_tokens.append("SCH40")
 
-        # Add grade
         if "WCB" in grade:
             short_tokens.append("WCB")
         elif "A106" in grade:
@@ -260,7 +247,6 @@ class AIEngine:
 
         short_desc = " ".join(short_tokens)[:40].strip()
 
-        # Detailed Long Description for GeM / e-Procurement
         long_desc = f"{item_type}, NOMINAL SPECIFICATION: {size}, RATING/DUTY: {rating}, BODY MATERIAL: {grade}, CONNECTION/SEALING: {end_conn}, SPECIFICATION STANDARD: {standard}"
 
         return {
@@ -296,14 +282,11 @@ class AIEngine:
         target_long = target_item.get("standard_long_desc") or target_item.get("description", "")
         target_attrs = dict(target_item.get("attributes") or self.extract_attributes(target_long or target_short))
         
-        # Ensure category is present in target_attrs
         target_cat = target_attrs.get("category") or target_item.get("category", "GENERAL_SPARES")
         target_attrs["category"] = target_cat
         query_cat = query_attrs.get("category", "GENERAL_SPARES")
 
-        # 1. Attribute Match Score (0.0 to 1.0)
         attr_scores = []
-        # Category & Item Type
         if query_cat != "GENERAL_SPARES" and target_cat != "GENERAL_SPARES":
             attr_scores.append(1.0 if query_cat == target_cat else 0.0)
 
@@ -312,7 +295,6 @@ class AIEngine:
         if q_type != "UNKNOWN" and t_type != "UNKNOWN":
             attr_scores.append(1.0 if q_type == t_type else 0.0)
 
-        # Size Compatibility (checks metric vs imperial equivalents)
         q_size_num = query_attrs.get("size_numeric_mm")
         t_size_num = target_attrs.get("size_numeric_mm")
         if q_size_num and t_size_num:
@@ -321,7 +303,6 @@ class AIEngine:
         elif query_attrs.get("size") != "N/A" and target_attrs.get("size") != "N/A":
             attr_scores.append(1.0 if query_attrs["size"] in target_attrs["size"] or target_attrs["size"] in query_attrs["size"] else 0.0)
 
-        # Rating Compatibility
         q_rating = query_attrs.get("rating", "")
         t_rating = target_attrs.get("rating", "")
         if q_rating != "N/A" and t_rating != "N/A":
@@ -329,7 +310,6 @@ class AIEngine:
             t_clean_rat = re.sub(r'[^\w]', '', t_rating.upper())
             attr_scores.append(1.0 if q_clean_rat in t_clean_rat or t_clean_rat in q_clean_rat else 0.0)
 
-        # Material Grade Compatibility
         q_grade = query_attrs.get("material_grade", "")
         t_grade = target_attrs.get("material_grade", "")
         if q_grade != "N/A" and t_grade != "N/A":
@@ -339,7 +319,6 @@ class AIEngine:
 
         attribute_score = np.mean(attr_scores) if attr_scores else 0.5
 
-        # 2. String Fuzzy Similarity & Token Overlap (evaluated against both short & long descriptions)
         query_norm = query_attrs.get("normalized_text", self.normalize_text(query_text))
         target_norm_short = self.normalize_text(target_short)
         target_norm_long = self.normalize_text(target_long)
@@ -348,7 +327,6 @@ class AIEngine:
         fuzzy_long = difflib.SequenceMatcher(None, query_norm, target_norm_long).ratio() if target_norm_long else 0
         fuzzy_score = max(fuzzy_short, fuzzy_long)
 
-        # Token Overlap (Jaccard)
         q_tokens = set(query_norm.split())
         t_tokens_short = set(target_norm_short.split()) if target_norm_short else set()
         t_tokens_long = set(target_norm_long.split()) if target_norm_long else set()
@@ -357,7 +335,6 @@ class AIEngine:
         overlap_long = len(q_tokens.intersection(t_tokens_long)) / max(len(q_tokens), 1) if t_tokens_long else 0
         token_overlap = max(overlap_short, overlap_long)
 
-        # 3. TF-IDF Cosine Similarity
         cosine_score = token_overlap
         if self._fitted:
             try:
@@ -369,7 +346,6 @@ class AIEngine:
             except Exception:
                 cosine_score = token_overlap
 
-        # Weighted Composite Score
         if attribute_score >= 0.85:
             composite_score = (attribute_score * 0.70) + (max(cosine_score, token_overlap) * 0.20) + (fuzzy_score * 0.10)
         else:
@@ -377,7 +353,6 @@ class AIEngine:
 
         confidence_pct = round(composite_score * 100, 1)
 
-        # Classification into Match Type
         if attribute_score >= 0.90 and (confidence_pct >= 80.0 or token_overlap >= 0.65):
             match_type = "EXACT_DUPLICATE"
             recommendation = "Harmonize under identical National Material Code. Consolidate legacy code."
@@ -427,9 +402,7 @@ class AIEngine:
                     "target_attributes": sim["target_attributes"]
                 })
 
-        # Sort descending by confidence
         results.sort(key=lambda x: x["confidence_pct"], reverse=True)
         return results
 
-# Singleton instance
 ai_engine = AIEngine()

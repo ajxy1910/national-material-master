@@ -16,7 +16,6 @@ class GovernanceEngine:
     ]
 
     def __init__(self):
-        # Pre-populated realistic audit trail events
         self.audit_log: List[Dict[str, Any]] = [
             {
                 "id": "AUD-001",

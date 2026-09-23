@@ -23,7 +23,6 @@ app = Flask(__name__, static_folder="static", template_folder="templates")
 app.config['JSON_SORT_KEYS'] = False
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16 MB max upload
 
-# In-memory storage with initial data
 raw_materials = list(CPSE_RAW_MATERIALS)
 national_masters = list(NATIONAL_MASTER_CATALOG)
 
@@ -162,7 +161,6 @@ def api_crosswalk():
         mapped_ids = set(master.get("mapped_cpse_items", []))
         cpse_mappings = {}
 
-        # Initialize all major CPSEs
         for cpse_key in CPSE_ENTITIES.keys():
             cpse_mappings[cpse_key] = None
 
@@ -247,7 +245,6 @@ def api_governance_update():
     target_master["governance"]["approved_by"] = actor
     target_master["governance"]["approval_date"] = datetime.date.today().isoformat()
 
-    # Log to audit trail
     log_rec = governance_engine.log_action(
         cnmc=cnmc,
         action="STATUS_UPDATED",
@@ -308,7 +305,6 @@ def api_upload():
         if not raw_desc:
             continue
 
-        # Extract attributes & match
         attrs = ai_engine.extract_attributes(raw_desc)
         descs = ai_engine.build_standardized_descriptions(attrs)
         matches = ai_engine.match_against_national_masters(raw_desc, national_masters, threshold=60.0)
@@ -370,7 +366,6 @@ def api_export():
             "cpse_materials": raw_materials
         })
 
-    # Generate CSV
     si = io.StringIO()
     cw = csv.writer(si)
     cw.writerow([

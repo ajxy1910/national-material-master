@@ -4,7 +4,6 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Global State
   const state = {
     currentTab: 'overview',
     overviewMetrics: null,
@@ -16,11 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     searchTerm: ''
   };
 
-  // DOM Elements
   const tabButtons = document.querySelectorAll('.nav-tab-btn');
   const sections = document.querySelectorAll('.view-section');
 
-  // Initialize
   initTabs();
   loadOverviewData();
   loadClusters();
@@ -31,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initMigrationWorkbench();
   initSapConsole();
 
-  // Tab Navigation Handling
   function initTabs() {
     tabButtons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -48,12 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Expose switchTab globally for internal buttons
   window.switchTab = switchTab;
 
-  // -------------------------------------------------------------
-  // 1. Overview Dashboard
-  // -------------------------------------------------------------
   async function loadOverviewData() {
     try {
       const res = await fetch('/api/overview');
@@ -102,9 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // -------------------------------------------------------------
-  // 2. AI Matching & Recommendation Studio
-  // -------------------------------------------------------------
   function initAiStudio() {
     const btnSearch = document.getElementById('btn-ai-search');
     const inputQuery = document.getElementById('ai-query-input');
@@ -126,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Quick demo chips
     document.querySelectorAll('.quick-chip').forEach(chip => {
       chip.addEventListener('click', () => {
         const text = chip.getAttribute('data-query');
@@ -265,9 +253,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // -------------------------------------------------------------
-  // 3. Side-by-Side Diff Modal
-  // -------------------------------------------------------------
   function openDiffModal(queryText, queryAttrs, master) {
     const modal = document.getElementById('diff-modal');
     if (!modal) return;
@@ -320,9 +305,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // -------------------------------------------------------------
-  // 4. Duplicate Clusters & Demand Aggregation
-  // -------------------------------------------------------------
   async function loadClusters() {
     try {
       const res = await fetch('/api/clusters');
@@ -406,9 +388,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // -------------------------------------------------------------
-  // 5. CPSE Cross-Walk Matrix
-  // -------------------------------------------------------------
   async function loadCrosswalk() {
     try {
       const res = await fetch('/api/crosswalk');
@@ -431,7 +410,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const search = state.searchTerm.toLowerCase();
 
     items.forEach(cw => {
-      // Check search match
       const searchBlob = `${cw.cnmc} ${cw.standard_short_desc} ${cw.category}`.toLowerCase();
       if (search && !searchBlob.includes(search)) return;
 
@@ -457,7 +435,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Crosswalk filters & search
   const cwSearchInput = document.getElementById('crosswalk-search');
   if (cwSearchInput) {
     cwSearchInput.addEventListener('input', (e) => {
@@ -472,9 +449,6 @@ document.addEventListener('DOMContentLoaded', () => {
     alert(`Common National Material Code: ${item.cnmc}\nStandard Description: ${item.standard_long_desc}\nNational Demand: ${item.annual_national_demand} ${item.standard_uom}\nBenchmark Price: ₹ ${item.benchmark_price_inr}`);
   };
 
-  // -------------------------------------------------------------
-  // 6. Savings Calculator
-  // -------------------------------------------------------------
   function initSavingsCalculator() {
     const sliderQty = document.getElementById('calc-slider-qty');
     const sliderDiscount = document.getElementById('calc-slider-discount');
@@ -508,9 +482,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // -------------------------------------------------------------
-  // 7. Legacy CSV Migration Workbench
-  // -------------------------------------------------------------
   function initMigrationWorkbench() {
     const dropzone = document.getElementById('csv-dropzone');
     const fileInput = document.getElementById('csv-file-input');
@@ -643,9 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-  // -------------------------------------------------------------
-  // 8. Governance & Committee Review
-  // -------------------------------------------------------------
+
   async function loadGovernanceData() {
     try {
       const resStatus = await fetch('/api/governance/status');
@@ -765,9 +734,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // -------------------------------------------------------------
-  // 9. SAP / ERP Integration Console
-  // -------------------------------------------------------------
+
   function initSapConsole() {
     const selectCnmc = document.getElementById('sap-select-cnmc');
     const selectCpse = document.getElementById('sap-select-cpse');
@@ -818,11 +785,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// -------------------------------------------------------------
-// 10. Global Language Switcher Functions (Google Translate API)
-// -------------------------------------------------------------
 
-// Google Translate Widget Initialization
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
     pageLanguage: 'en',
@@ -831,23 +794,59 @@ function googleTranslateElementInit() {
   }, 'google_translate_element');
 }
 
-// Global Function to trigger translation on pill button click
-window.translatePage = function (langCode) {
-  // 1. Update Active Highlight Class on Custom Buttons
-  const buttons = document.querySelectorAll('.lang-pill, .lang-tab, .lang-btn');
-  buttons.forEach(btn => btn.classList.remove('active'));
+window.switchLang = function (langCode) {
 
-  const selectedBtn = document.getElementById(`btn-${langCode}`);
-  if (selectedBtn) {
-    selectedBtn.classList.add('active');
-  }
+  document.querySelectorAll('.lang-pill, .lang-tab, .lang-btn')
+    .forEach(btn => btn.classList.remove('active'));
 
-  // 2. Trigger Google Translate Dropdown
+  const buttons = document.querySelectorAll(
+    `.lang-pill, .lang-tab, .lang-btn`
+  );
+
+  buttons.forEach(btn => {
+    const onclickValue = btn.getAttribute('onclick');
+
+    if (
+      onclickValue &&
+      (
+        onclickValue.includes(`'${langCode}'`) ||
+        onclickValue.includes(`"${langCode}"`)
+      )
+    ) {
+      btn.classList.add('active');
+    }
+  });
+
   const selectElement = document.querySelector('.goog-te-combo');
+
   if (selectElement) {
     selectElement.value = langCode;
     selectElement.dispatchEvent(new Event('change'));
+
+    localStorage.setItem('numm-language', langCode);
   } else {
-    console.warn('Google Translate element is initializing...');
+    setTimeout(() => {
+      const translator = document.querySelector('.goog-te-combo');
+
+      if (translator) {
+        translator.value = langCode;
+        translator.dispatchEvent(new Event('change'));
+
+        localStorage.setItem('numm-language', langCode);
+      }
+    }, 700);
   }
 };
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  const savedLanguage =
+    localStorage.getItem('numm-language') || 'en';
+
+  if (savedLanguage !== 'en') {
+    setTimeout(() => {
+      switchLang(savedLanguage);
+    }, 1200);
+  }
+});

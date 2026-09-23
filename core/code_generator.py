@@ -57,20 +57,16 @@ class CodeGenerator:
         grade = attributes.get("material_grade", "WCB").upper()
         rating = attributes.get("rating", "").upper()
 
-        # 1. HSN / Commodity Prefix
         tax_info = COMMODITY_TAXONOMIES.get(category, COMMODITY_TAXONOMIES["VALVES"])
         hsn_prefix = tax_info["code_prefix"]
 
-        # 2. Item Type 4-char code
         type_code = cls.TYPE_ABBREVIATIONS.get(item_type, "GENM")
 
-        # 3. Size numeric string (padded to 3 or 4 digits)
         if size_num:
             size_code = f"{int(size_num):03d}" if size_num < 1000 else f"{int(size_num)}"
         else:
             size_code = "000"
 
-        # 4. Material/Spec 3-4 char abbreviation
         if "WCB" in grade:
             spec_code = "WCB"
         elif "A106" in grade:
@@ -86,7 +82,6 @@ class CodeGenerator:
         elif "800" in rating or "NN" in grade:
             spec_code = "800"
         else:
-            # fallback to 3-char hash of grade
             spec_code = hashlib.md5(grade.encode()).hexdigest()[:4].upper()
 
         base_str = f"{cls.PREFIX}-{hsn_prefix}-{type_code}-{size_code}-{spec_code}"

@@ -69,11 +69,9 @@ def test_api_crosswalk(client):
     assert data["total_national_items"] >= 7
 
 def test_api_governance_workflow(client):
-    # Fetch status
     res = client.get("/api/governance/status")
     assert res.status_code == 200
     
-    # Update status
     payload = {
         "cnmc": "IN-NMC-8481-VLVB-050-WCB-1",
         "new_status": "APPROVED_NATIONAL_CODE",
@@ -87,14 +85,12 @@ def test_api_governance_workflow(client):
     assert data["status"] == "success"
     assert data["updated_master"]["harmonization_status"] == "APPROVED_NATIONAL_CODE"
 
-    # Verify audit log
     audit_res = client.get("/api/governance/audit?cnmc=IN-NMC-8481-VLVB-050-WCB-1")
     assert audit_res.status_code == 200
     audit_data = audit_res.get_json()
     assert len(audit_data["audit_trail"]) > 0
 
 def test_api_sap_integration(client):
-    # Payload preview
     res_bapi = client.get("/api/sap/payload?cnmc=IN-NMC-8481-VLVG-100-WCB-4&type=bapi")
     assert res_bapi.status_code == 200
     assert "BAPI_MATERIAL_SAVEDATA" in str(res_bapi.data)
@@ -103,7 +99,6 @@ def test_api_sap_integration(client):
     assert res_idoc.status_code == 200
     assert b"<MATMAS05>" in res_idoc.data
 
-    # ERP sync simulation
     sync_payload = {
         "cnmc": "IN-NMC-8481-VLVG-100-WCB-4",
         "cpse": "IOCL"

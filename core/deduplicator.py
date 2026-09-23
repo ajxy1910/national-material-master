@@ -41,24 +41,20 @@ class Deduplicator:
                         "recommendation": sim["recommendation"]
                     })
 
-            # Calculate price variance across CPSEs
             prices = [item["unit_price_inr"] for item in cluster_items]
             min_price = min(prices) if prices else master["benchmark_price_inr"]
             max_price = max(prices) if prices else master["benchmark_price_inr"]
             avg_price = sum(prices) / len(prices) if prices else master["benchmark_price_inr"]
             variance_pct = round(((max_price - min_price) / min_price * 100), 1) if min_price > 0 else 0
 
-            # Calculate total annual volume and demand aggregation savings
             total_qty = sum(item["annual_procurement_qty"] for item in cluster_items)
             total_spend_current = sum(item["unit_price_inr"] * item["annual_procurement_qty"] for item in cluster_items)
             
-            # Strategic sourcing bulk price estimate (benchmark price with 10% volume discount)
             negotiated_bulk_price = round(min_price * 0.92, 0)
             total_spend_aggregated = negotiated_bulk_price * total_qty
             potential_savings_inr = max(0, total_spend_current - total_spend_aggregated)
             potential_savings_crores = round(potential_savings_inr / 10_000_000, 2)
 
-            # Total surplus inventory available across CPSEs
             total_stock_on_hand = sum(item["stock_on_hand"] for item in cluster_items)
 
             clusters.append({
@@ -99,17 +95,13 @@ class Deduplicator:
             c["procurement_analytics"]["potential_savings_crores"] for c in clusters
         ), 2)
 
-        # Rationalization Rate: reduction in code sprawl
-        # In a real environment, e.g. 50,000 raw codes -> 21,400 unified codes = 57.2% reduction
         rationalization_rate = round(((total_raw_codes - total_national_codes) / total_raw_codes) * 100, 1)
 
-        # CPSE Participation Breakdown
         cpse_counts = {}
         for item in self.raw_materials:
             cpse = item["cpse"]
             cpse_counts[cpse] = cpse_counts.get(cpse, 0) + 1
 
-        # Match type distribution across clustered items
         exact_count = 0
         near_count = 0
         equiv_count = 0

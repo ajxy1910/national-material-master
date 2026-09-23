@@ -53,7 +53,11 @@ An AI-driven enterprise material master standardization, harmonization, deduplic
 
 ---
 
+<<<<<<< Updated upstream
 ##  Quick Start Guide
+=======
+## Quick Start Guide
+>>>>>>> Stashed changes
 
 ### 1. Requirements
 - Python 3.10+ (Tested on Python 3.14)
@@ -88,7 +92,11 @@ python cli.py harmonize data/sample_legacy_upload.csv --output harmonized_catalo
 
 ---
 
+<<<<<<< Updated upstream
 ## REST API Reference
+=======
+##  REST API Reference
+>>>>>>> Stashed changes
 
 | Endpoint | Method | Description |
 |---|---|---|

@@ -3,7 +3,6 @@ Taxonomies, dictionaries, and sector classifications for CPSE Material Masters.
 Standardizes UNSPSC, HSN/SAC, UOM, and industrial abbreviations across Indian CPSEs.
 """
 
-# Major participating CPSEs across sectors
 CPSE_ENTITIES = {
     "ONGC": {
         "name": "Oil and Natural Gas Corporation Ltd.",
@@ -77,7 +76,6 @@ CPSE_ENTITIES = {
     }
 }
 
-# Standard Commodity Categories with UNSPSC and HSN mapping
 COMMODITY_TAXONOMIES = {
     "VALVES": {
         "code_prefix": "8481",
@@ -129,9 +127,7 @@ COMMODITY_TAXONOMIES = {
     }
 }
 
-# Industrial CPSE Abbreviation Dictionary for NLP Normalization
 ABBREVIATION_EXPANSIONS = {
-    # Material grades & specs
     r"\bCS\b": "CARBON STEEL",
     r"\bSS\b": "STAINLESS STEEL",
     r"\bMS\b": "MILD STEEL",
@@ -147,7 +143,6 @@ ABBREVIATION_EXPANSIONS = {
     r"\bAL\b": "ALUMINIUM",
     r"\bCU\b": "COPPER",
 
-    # Piping & Valves
     r"\bVLV\b": "VALVE",
     r"\bVALV\b": "VALVE",
     r"\bGT\s+VLV\b": "GATE VALVE",
@@ -175,7 +170,6 @@ ABBREVIATION_EXPANSIONS = {
     r"\bNPT\b": "NPT THREADED",
     r"\bSCH\b": "SCHEDULE",
 
-    # Bearings & Mechanical
     r"\bBRG\b": "BEARING",
     r"\bDGBB\b": "DEEP GROOVE BALL BEARING",
     r"\bSRB\b": "SPHERICAL ROLLER BEARING",
@@ -185,7 +179,6 @@ ABBREVIATION_EXPANSIONS = {
     r"\b2RS1\b": "DOUBLE RUBBER SEALED",
     r"\bZZ\b": "DOUBLE METAL SHIELDED",
 
-    # Electrical
     r"\bCBL\b": "CABLE",
     r"\bXLPE\b": "CROSSLINKED POLYETHYLENE",
     r"\bPVC\b": "POLYVINYL CHLORIDE",
@@ -195,7 +188,6 @@ ABBREVIATION_EXPANSIONS = {
     r"\bSQ\s*MM\b": "SQ.MM",
     r"\bKV\b": "KV",
 
-    # Fasteners & Gaskets
     r"\bBLT\b": "BOLT",
     r"\bNUT\b": "HEX NUT",
     r"\bWSH\b": "WASHER",
@@ -205,7 +197,6 @@ ABBREVIATION_EXPANSIONS = {
     r"\bCNAF\b": "NON ASBESTOS FIBRE GASKET"
 }
 
-# Unit of Measurement harmonization table
 UOM_NORMALIZATION = {
     "INCH": "INCH",
     "IN": "INCH",
@@ -230,7 +221,6 @@ UOM_NORMALIZATION = {
     "TONNE": "MT"
 }
 
-# Common nominal size conversions (Inches to MM NB and vice-versa)
 SIZE_CONVERSIONS = {
     "1/2\"": "15MM NB",
     "1/2 INCH": "15MM NB",

@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>National Unified Material Master (NUMM) | One Nation – One Material Code | Government of India</title>
+  <meta name="description"
+    content="AI-Powered National Unified Material Master Framework for Indian CPSEs. Harmonizing material codes across Oil & Gas, Power, Steel, Mining, and Heavy Engineering sectors.">
+  <meta name="keywords"
+    content="NUMM, CPSE, material master, harmonization, One Nation One Material Code, Government of India, procurement">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+  <div class="flash-ticker">
+    <span class="flash-label">Flash News</span>
+    <div class="flash-marquee">
+      <span>
+        * NUMM Phase-1 Harmonization Complete: 312 Common National Material Codes (CNMCs) ratified across 10 CPSEs
+        &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        * Strategic Sourcing Initiative: Demand aggregation for gate valves and pipefittings projected to save ₹11.09 Cr
+        annually &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        * SAP S/4HANA Integration Live: ONGC, IOCL, and NTPC instances synchronized
+        &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        * National Material Standardization Directorate (NMSD) welcomes POWERGRID and BHEL to the unified framework
+      </span>
+    </div>
+  </div>
+
+  <header class="header-banner">
+    <div class="top-gov-strip">
+      <div style="display:flex; align-items:center; gap:6px;">
+        <div class="tricolor-indicator">
+          <span class="saffron"></span>
+          <span class="white"></span>
+          <span class="green"></span>
+        </div>
+        <span>Government of India &bull; Ministry of Petroleum &bull; Ministry of Power &bull; Ministry of Steel &bull;
+          Ministry of Heavy Industries</span>
+      </div>
+      <div class="gov-links">
+        <a href="#">Skip to Content</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Screen Reader</a>
+        <a href="#">A-</a>
+        <a href="#">A</a>
+        <a href="#">A+</a>
+      </div>
+    </div>
+    <!-- HTML -->
+    <div class="lang-toggle-btn">
+      <button class="lang-tab active" onclick="switchLang('en')">English</button>
+      <button class="lang-tab" onclick="switchLang('hi')">हिंदी</button>
+    </div>
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <script type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <div class="header-main">
+      <div class="brand-container">
+        <div class="national-emblem-badge" title="National Unified Material Master Portal – Government of India">
+          🏛️
+        </div>
+        <div class="brand-text">
+          <h1>National Unified Material Master (NUMM)</h1>
+          <h1>राष्ट्रीय एकीकृत सामग्री मास्टर</h1>
+          <div class="subtext">One Nation – One Material Code &bull; AI-Powered CPSE Harmonization</div>
+          <div class="ministry-line">Central Public Sector Enterprises Unified Procurement Framework &bull; Dept. of
+            Public Enterprises, GoI</div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+
+        <div class="live-sync-badge">
+          <span class="pulse-dot"></span>
+          <span>10 CPSE SAP Gateways Active</span>
+        </div>
+        <a href="/api/export?format=csv" class="btn btn-saffron btn-sm">
+          Export Master CSV
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav-container">
+    <ul class="nav-tabs">
+      <li>
+        <button class="nav-tab-btn active" data-tab="overview">
+          Executive Overview &amp; Savings
+        </button>
+      </li>
+      <li>
+        <button class="nav-tab-btn" data-tab="ai-studio">
+          AI Matching &amp; Recommendation
+        </button>
+      </li>
+      <li>
+        <button class="nav-tab-btn" data-tab="clusters">
+          Duplicate Clusters &amp; Price Variance
+          <span class="nav-badge" id="cnt-exact-dups-nav">30</span>
+        </button>
+      </li>
+      <li>
+        <button class="nav-tab-btn" data-tab="crosswalk">
+          CPSE Cross-Walk Matrix
+        </button>
+      </li>
+      <li>
+        <button class="nav-tab-btn" data-tab="migration">
+          Legacy Migration Workbench
+        </button>
+      </li>
+      <li>
+        <button class="nav-tab-btn" data-tab="governance">
+          Governance &amp; Audit Trail
+        </button>
+      </li>
+      <li>
+        <button class="nav-tab-btn" data-tab="sap-console">
+          SAP / ERP Integration Console
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+
+    <section id="section-overview" class="view-section active">
+
+      <div class="section-hero">
+        <div class="section-hero-text">
+          <h2>Executive Dashboard – CPSE Material Harmonization</h2>
+          <p>Real-time analytics across 10 Central Public Sector Enterprises &bull; AI-Powered Matching &bull; Demand
+            Aggregation Savings</p>
+        </div>
+        <div style="display:flex; gap:0.5rem; flex-shrink:0;">
+          <span class="status-pill status-APPROVED_NATIONAL_CODE">Platform Live</span>
+          <span class="status-pill status-AI_RECOMMENDED">AI Engine Active</span>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card cyan">
+          <div class="kpi-header">
+            <span>CPSE Catalog Items Ingested</span>
+          </div>
+          <div class="kpi-value" id="kpi-total-raw">--</div>
+          <div class="kpi-footer">Across 10 Public Sector Enterprises</div>
+        </div>
+
+        <div class="kpi-card emerald">
+          <div class="kpi-header">
+            <span>Unified National Codes (CNMC)</span>
+          </div>
+          <div class="kpi-value" id="kpi-national-codes">--</div>
+          <div class="kpi-footer">Ratified Common National Standards</div>
+        </div>
+
+        <div class="kpi-card saffron">
+          <div class="kpi-header">
+            <span>Catalog Rationalization Rate</span>
+          </div>
+          <div class="kpi-value" id="kpi-rationalization">--</div>
+          <div class="kpi-footer"><span class="badge-trend-up">↑ 81.1%</span> code sprawl reduction</div>
+        </div>
+
+        <div class="kpi-card gold">
+          <div class="kpi-header">
+            <span>Demand Aggregation Savings</span>
+          </div>
+          <div class="kpi-value" id="kpi-savings">--</div>
+          <div class="kpi-footer">Pooled procurement cost reduction</div>
+        </div>
+
+        <div class="kpi-card rose">
+          <div class="kpi-header">
+            <span>Inter-CPSE Surplus Stock</span>
+          </div>
+          <div class="kpi-value" id="kpi-surplus-stock">--</div>
+          <div class="kpi-footer">Available for cross-enterprise reallocation</div>
+        </div>
+      </div>
+
+      <div class="grid-2col">
+        <div class="glass-panel">
+          <div class="panel-header">
+            <h2 class="panel-title">
+              Strategic Sourcing &amp; Demand Aggregation Calculator
+            </h2>
+            <span class="status-pill status-APPROVED_NATIONAL_CODE">LIVE ENGINE</span>
+          </div>
+          <p style="font-size:0.83rem; color:var(--text-muted); margin-bottom:1rem;">
+            When CPSEs pool procurement tenders for identical items under Common National Material Codes, bulk
+            purchasing volume unlocks significant price discounts from original equipment manufacturers.
+          </p>
+
+          <div class="calc-card">
+            <div class="calc-sliders">
+              <div class="slider-group">
+                <label>Annual National Demand Volume Scale: <strong id="lbl-calc-qty"
+                    style="color:var(--navy-accent);">1.0x</strong></label>
+                <input type="range" id="calc-slider-qty" min="0.5" max="3.0" step="0.1" value="1.0">
+              </div>
+              <div class="slider-group">
+                <label>Pooled Sourcing Bulk Discount: <strong id="lbl-calc-discount"
+                    style="color:var(--saffron);">12%</strong></label>
+                <input type="range" id="calc-slider-discount" min="5" max="25" step="1" value="12">
+              </div>
+            </div>
+
+            <div class="calc-result-box">
+              <div>
+                <div class="calc-stat-val" id="calc-res-spend">₹ 81.31 Cr</div>
+                <div class="calc-stat-lbl">Aggregated Annual Spend</div>
+              </div>
+              <div style="font-size:1.5rem; color:var(--text-light);">&rarr;</div>
+              <div>
+                <div class="calc-stat-val" id="calc-res-savings" style="color:var(--emerald);">₹ 11.09 Cr</div>
+                <div class="calc-stat-lbl">Projected Annual Savings</div>
+              </div>
+              <div style="font-size:1.5rem; color:var(--text-light);">&bull;</div>
+              <div>
+                <div class="calc-stat-val" id="calc-res-pct" style="color:var(--saffron); font-size:1.25rem;">12%</div>
+                <div class="calc-stat-lbl">Effective Cost Reduction</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-panel">
+          <div class="panel-header">
+            <h2 class="panel-title">
+              Participating CPSE Master Distribution
+            </h2>
+            <span style="font-size:0.78rem; color:var(--text-muted); font-weight:600;">10 Enterprises Onboarded</span>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:1.25rem;">
+            Harmonized master catalog across Oil &amp; Gas, Power, Steel, Mining, and Heavy Engineering CPSEs:
+          </p>
+          <div id="cpse-bar-container">
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3col">
+        <div class="glass-panel" style="margin-bottom:0; border-top: 3px solid var(--navy-mid);">
+          <h3
+            style="font-size:0.95rem; font-weight:700; color:var(--navy-dark); margin-bottom:0.5rem; display:flex; align-items:center; gap:6px;">
+            AI Material Matcher
+          </h3>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">
+            Test matching any unstandardized CPSE item description with real-time NLP attribute extraction and
+            similarity scoring.
+          </p>
+          <button class="btn btn-primary" onclick="switchTab('ai-studio')">Open AI Studio &rarr;</button>
+        </div>
+
+        <div class="glass-panel" style="margin-bottom:0; border-top: 3px solid var(--saffron);">
+          <h3
+            style="font-size:0.95rem; font-weight:700; color:var(--navy-dark); margin-bottom:0.5rem; display:flex; align-items:center; gap:6px;">
+            Duplicate Clusters
+          </h3>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">
+            Inspect identical materials purchased at widely varying prices across ONGC, IOCL, GAIL, and NTPC.
+          </p>
+          <button class="btn btn-saffron" onclick="switchTab('clusters')">View Clusters &rarr;</button>
+        </div>
+
+        <div class="glass-panel" style="margin-bottom:0; border-top: 3px solid var(--emerald);">
+          <h3
+            style="font-size:0.95rem; font-weight:700; color:var(--navy-dark); margin-bottom:0.5rem; display:flex; align-items:center; gap:6px;">
+            Batch CSV Ingestion
+          </h3>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">
+            Upload your legacy SAP material master CSV and receive an instant AI harmonization and mapping report.
+          </p>
+          <button class="btn btn-secondary" onclick="switchTab('migration')">Launch Workbench &rarr;</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="section-ai-studio" class="view-section">
+      <div class="section-hero">
+        <div class="section-hero-text">
+          <h2>AI Parametric Matching &amp; Recommendation Studio</h2>
+          <p>NLP engine expands CPSE abbreviations, parses 7 technical attributes, and matches against the National
+            Master database</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <label style="font-size:0.8rem; color:var(--text-navy-sub);">Similarity Threshold: <strong id="threshold-val"
+              style="color:var(--saffron-light);">60%</strong></label>
+          <input type="range" id="threshold-slider" min="40" max="95" step="5" value="60"
+            style="accent-color:var(--saffron); width:110px;">
+        </div>
+      </div>
+
+      <div class="glass-panel">
+        <div class="panel-header">
+          <h2 class="panel-title">
+            Enter Unstandardized Material Description
+          </h2>
+        </div>
+
+        <div class="label-upper" style="margin-bottom:0.5rem;">Try realistic unstandardized CPSE item queries:</div>
+        <div class="quick-chips">
+          <button class="quick-chip" data-query="VLV GATE FLGD 4IN 150# CS A216 WCB RF OS&Y">ONGC: VLV GATE FLGD 4IN
+            150# CS A216 WCB RF OS&Y</button>
+          <button class="quick-chip" data-query="CS GATE VALVE 100 NB 150 LBS FLGD WCB OS&Y">NTPC: CS GATE VALVE 100 NB
+            150 LBS FLGD WCB OS&Y</button>
+          <button class="quick-chip" data-query="PIPE CS SMLS 6 INCH SCH 40 ASTM A106 GR B BEVELLED END">IOCL: PIPE CS
+            SMLS 6 INCH SCH 40 ASTM A106 GR B BEVELLED END</button>
+          <button class="quick-chip" data-query="DEEP GROOVE BALL BEARING 6310 2RS C3 SKF/FAG">BHEL: DEEP GROOVE BALL
+            BEARING 6310 2RS C3 SKF/FAG</button>
+          <button class="quick-chip" data-query="11KV CABLE 3CX240 SQ.MM AL XLPE ARMOURED STRANDED">NTPC: 11KV CABLE
+            3CX240 SQ.MM AL XLPE ARMOURED STRANDED</button>
+          <button class="quick-chip" data-query="CONVEYOR BELT 1200MM WIDTH NN 4-PLY 800/4 5+2 DIN-X">CIL: CONVEYOR BELT
+            1200MM WIDTH NN 4-PLY 800/4 5+2 DIN-X</button>
+        </div>
+
+        <div class="ai-search-box">
+          <input type="text" id="ai-query-input" class="input-text"
+            placeholder="Enter unstructured material description (e.g., 'GATE VALVE 4 INCH 150# WCB FLANGED OS&Y')..."
+            value="VLV GATE FLGD 4IN 150# CS A216 WCB RF OS&Y">
+          <button id="btn-ai-search" class="btn btn-primary" style="padding:0.7rem 1.5rem; font-size:0.9rem;">
+            Analyze &amp; Match
+          </button>
+        </div>
+
+        <div id="parsed-attrs-container">
+        </div>
+
+        <div id="ai-results-container">
+        </div>
+      </div>
+    </section>
+
+
+    <section id="section-clusters" class="view-section">
+      <div class="section-hero">
+        <div class="section-hero-text">
+          <h2>Duplicate, Near-Duplicate &amp; Functional Equivalency Clusters</h2>
+          <p>Groups identical and functionally interchangeable materials across enterprises, highlighting price
+            variation and demand aggregation opportunities</p>
+        </div>
+        <div style="display:flex; gap:0.5rem; flex-shrink:0; flex-wrap:wrap;">
+          <span class="status-pill status-APPROVED_NATIONAL_CODE"><span id="cnt-exact-dups">30</span> Exact
+            Duplicates</span>
+          <span class="status-pill status-AI_RECOMMENDED"><span id="cnt-near-dups">4</span> Near-Duplicates</span>
+          <span class="status-pill status-COMMITTEE_EVALUATION"><span id="cnt-functional-equiv">3</span> Functional
+            Equivalents</span>
+        </div>
+      </div>
+
+      <div class="glass-panel">
+        <div id="clusters-accordion">
+        </div>
+      </div>
+    </section>
+
+
+    <section id="section-crosswalk" class="view-section">
+      <div class="section-hero">
+        <div class="section-hero-text">
+          <h2>Multi-CPSE Master Cross-Walk Matrix</h2>
+          <p>Enables 'One Nation – One Material Code' while preserving complete traceability to individual CPSE legacy
+            SAP/ERP material codes</p>
+        </div>
+        <div class="panel-actions">
+          <input type="text" id="crosswalk-search" class="input-text" placeholder="Filter by CNMC or keyword..."
+            style="width:230px; padding:0.4rem 0.8rem; font-size:0.8rem;">
+          <a href="/api/export?format=csv" class="btn btn-saffron btn-sm">Export CSV</a>
+          <a href="/api/export?format=json" class="btn btn-secondary btn-sm">Export JSON</a>
+        </div>
+      </div>
+
+      <div class="glass-panel" style="padding:0;">
+        <div class="data-table-container" style="border:none; box-shadow:none; border-radius:var(--radius-md);">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Common National Material Code (CNMC)</th>
+                <th>Standard Short Description</th>
+                <th>Harmonization Status</th>
+                <th>UOM</th>
+                <th>Benchmark Price</th>
+                <th>Mapped CPSE Legacy Codes</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="crosswalk-table-body">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="section-migration" class="view-section">
+      <div class="section-hero">
+        <div class="section-hero-text">
+          <h2>Legacy Material Code Migration Workbench</h2>
+          <p>Upload bulk material master dumps from SAP ECC, S/4HANA, or Oracle ERP. AI processes records in batch mode
+            and provides a downloadable cross-walk mapping.</p>
+        </div>
+        <button id="btn-load-sample-csv" class="btn btn-saffron">
+          Test with Sample CPSE Catalog (7 Items)
+        </button>
+      </div>
+
+      <div class="glass-panel">
+        <div class="dropzone" id="csv-dropzone">
+          <input type="file" id="csv-file-input" accept=".csv" style="display:none;">
+          <div style="font-size:2.5rem; margin-bottom:0.75rem;">📁</div>
+          <h3 style="font-size:1rem; font-weight:700; color:var(--navy-dark); margin-bottom:0.35rem;">Drag &amp; Drop
+            your Legacy CPSE CSV File Here</h3>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:1rem;">
+            Supports standard CSV columns: <code
+              style="background:var(--bg-stripe); padding:0.1rem 0.35rem; border-radius:3px; font-size:0.78rem;">legacy_code</code>,
+            <code
+              style="background:var(--bg-stripe); padding:0.1rem 0.35rem; border-radius:3px; font-size:0.78rem;">cpse_name</code>,
+            <code
+              style="background:var(--bg-stripe); padding:0.1rem 0.35rem; border-radius:3px; font-size:0.78rem;">description</code>,
+            <code
+              style="background:var(--bg-stripe); padding:0.1rem 0.35rem; border-radius:3px; font-size:0.78rem;">uom</code>,
+            <code
+              style="background:var(--bg-stripe); padding:0.1rem 0.35rem; border-radius:3px; font-size:0.78rem;">unit_price_inr</code>
+          </p>
+          <button class="btn btn-primary" onclick="document.getElementById('csv-file-input').click()">Browse Local
+            File</button>
+        </div>
+
+        <div id="migration-results-container">
+          <!-- Dynamic batch harmonization report -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 6: Governance & Audit Trail                      -->
+    <!-- ======================================================== -->
+    <section id="section-governance" class="view-section">
+      <div class="section-hero">
+        <div class="section-hero-text">
+          <h2>Governance, Ratification &amp; Audit Trail</h2>
+          <p>National Material Standardization Directorate (NMSD) multi-stakeholder governance queue with immutable
+            audit log</p>
+        </div>
+        <span class="status-pill status-COMMITTEE_EVALUATION">Workflow Active</span>
+      </div>
+
+      <div class="grid-2col">
+        <!-- Review Queue -->
+        <div class="glass-panel">
+          <div class="panel-header">
+            <h2 class="panel-title">
+              Committee Evaluation &amp; Ratification Queue
+            </h2>
+          </div>
+          <div class="data-table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>CNMC Code</th>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>CPSEs</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="governance-queue-body">
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Immutable Audit Trail Timeline -->
+        <div class="glass-panel">
+          <div class="panel-header">
+            <h2 class="panel-title">
+              Immutable Change Audit Trail
+            </h2>
+            <span style="font-size:0.72rem; color:var(--text-muted); font-weight:600;">Tamper-Evident Governance
+              Log</span>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:1.25rem;">
+            Chronological audit of standardizations, status transitions, and stakeholder overrides:
+          </p>
+          <div id="audit-trail-timeline">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 7: SAP / ERP Integration Console                 -->
+    <!-- ======================================================== -->
+    <section id="section-sap-console" class="view-section">
+      <div class="section-hero">
+        <div class="section-hero-text">
+          <h2>SAP S/4HANA &amp; ECC 6.0 Integration Simulator</h2>
+          <p>Simulates bi-directional material master synchronization via RFC BAPI_MATERIAL_SAVEDATA, IDoc MATMAS05 XML,
+            and S/4HANA OData v4 APIs</p>
+        </div>
+        <div class="live-sync-badge">
+          <span class="pulse-dot"></span>
+          <span>RFC Gateway Active</span>
+        </div>
+      </div>
+
+      <div class="glass-panel">
+        <div
+          style="display:grid; grid-template-columns: 1fr 1fr 1fr auto; gap:1rem; margin-bottom:1.5rem; align-items:flex-end;">
+          <div>
+            <label
+              style="display:block; font-size:0.78rem; color:var(--text-muted); margin-bottom:0.35rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">National
+              Material Code (CNMC):</label>
+            <select id="sap-select-cnmc" class="input-text" style="width:100%;">
+              <option value="IN-NMC-8481-VLVG-100-WCB-4">IN-NMC-8481-VLVG-100-WCB-4 (Gate Valve 4" 150#)</option>
+              <option value="IN-NMC-7304-PIPS-150-A106-9">IN-NMC-7304-PIPS-150-A106-9 (Seamless Pipe 6" SCH 40)</option>
+              <option value="IN-NMC-8482-BRGD-050-6310-2">IN-NMC-8482-BRGD-050-6310-2 (Ball Bearing 6310-2RS)</option>
+              <option value="IN-NMC-8544-CBLX-240-11KV-6">IN-NMC-8544-CBLX-240-11KV-6 (11kV XLPE Cable 3Cx240)</option>
+              <option value="IN-NMC-7307-FLGW-100-A105-3">IN-NMC-7307-FLGW-100-A105-3 (Weld Neck Flange 4" 150#)
+              </option>
+              <option value="IN-NMC-8428-BLTC-1200-800-8">IN-NMC-8428-BLTC-1200-800-8 (Conveyor Belt 1200mm)</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              style="display:block; font-size:0.78rem; color:var(--text-muted); margin-bottom:0.35rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">Target
+              CPSE SAP Instance:</label>
+            <select id="sap-select-cpse" class="input-text" style="width:100%;">
+              <option value="IOCL">IOCL – Panipat / Mathura (SAP ECC 6.0 EHP8)</option>
+              <option value="ONGC">ONGC – Hazira / Mumbai High (SAP S/4HANA 2023)</option>
+              <option value="NTPC">NTPC – Singrauli / Vindhyachal (SAP S/4HANA 2022)</option>
+              <option value="GAIL">GAIL – Vijaipur / Pata (SAP S/4HANA)</option>
+              <option value="SAIL">SAIL – Bhilai / Rourkela (SAP ECC 6.0)</option>
+              <option value="COAL_INDIA">Coal India – CIL Ranchi (SAP S/4HANA)</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              style="display:block; font-size:0.78rem; color:var(--text-muted); margin-bottom:0.35rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">Integration
+              Protocol / Payload Format:</label>
+            <select id="sap-select-type" class="input-text" style="width:100%;">
+              <option value="bapi">RFC BAPI_MATERIAL_SAVEDATA (JSON)</option>
+              <option value="idoc">SAP IDoc MATMAS05 (Standard XML)</option>
+              <option value="odata">SAP S/4HANA Cloud OData API v4 (REST)</option>
+            </select>
+          </div>
+
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+            <button id="btn-gen-sap-payload" class="btn btn-secondary">Generate Payload</button>
+            <button id="btn-sim-sap-sync" class="btn btn-primary">Simulate Live ERP Sync</button>
+          </div>
+        </div>
+
+        <div
+          style="margin-bottom:0.5rem; font-size:0.78rem; color:var(--text-muted); display:flex; justify-content:space-between; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">
+          <span>SAP Transaction Payload / RFC Response Console:</span>
+          <span
+            style="color:var(--navy-accent); font-family:var(--font-mono); text-transform:none; letter-spacing:0; font-weight:600;">SAP
+            Gateway Protocol: CPIC/RFC-TCP</span>
+        </div>
+        <div id="sap-preview-box" class="code-preview-box">// Click "Generate Payload" or "Simulate Live ERP Sync" to
+          test SAP S/4HANA synchronization...</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- MODAL 1: Side-by-Side Attribute Comparison Diff          -->
+  <!-- ======================================================== -->
+  <div id="diff-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h3>Side-by-Side Parametric Attribute Comparison</h3>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem;">
+            Comparing query item against National Standard Master
+          </p>
+        </div>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-bottom:1rem;">
+        <div
+          style="background:var(--bg-stripe); border:1px solid var(--border); border-radius:var(--radius-sm); padding:1rem;">
+          <div class="label-upper" style="margin-bottom:0.3rem;">Input CPSE Material</div>
+          <div id="diff-query-title"
+            style="font-weight:600; font-size:0.92rem; color:var(--navy-dark); margin-top:0.25rem;">--</div>
+        </div>
+        <div style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:var(--radius-sm); padding:1rem;">
+          <div class="label-upper" style="color:var(--navy-accent); margin-bottom:0.3rem;">Proposed National Master
+          </div>
+          <div id="diff-master-code" class="cnmc-tag" style="margin-top:0.25rem;">--</div>
+          <div id="diff-master-title" style="font-size:0.84rem; color:var(--text-muted); margin-top:0.35rem;">--</div>
+        </div>
+      </div>
+
+      <table class="diff-table">
+        <thead>
+          <tr>
+            <th style="width:25%;">Engineering Parameter</th>
+            <th style="width:35%;">Input CPSE Value</th>
+            <th style="width:30%;">National Master Standard</th>
+            <th style="width:10%;">Compatibility</th>
+          </tr>
+        </thead>
+        <tbody id="diff-table-body">
+          <!-- Populated dynamically -->
+        </tbody>
+      </table>
+
+      <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1.5rem;">
+        <button class="btn btn-secondary modal-close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL 2: Governance Status & Committee Approval Modal    -->
+  <!-- ======================================================== -->
+  <div id="gov-action-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width:600px;">
+      <div class="modal-header">
+        <div>
+          <h3>Committee Ratification &amp; Approval</h3>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem;">
+            Update governance status for Common National Material Code
+          </p>
+        </div>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+
+      <input type="hidden" id="gov-hidden-cnmc" value="">
+
+      <div
+        style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:var(--radius-sm); padding:0.85rem; margin-bottom:1.25rem;">
+        <span class="cnmc-tag" id="gov-modal-cnmc">--</span>
+        <div id="gov-modal-title"
+          style="font-weight:600; font-size:0.9rem; color:var(--navy-dark); margin-top:0.35rem;">--</div>
+      </div>
+
+      <div style="margin-bottom:1rem;">
+        <label
+          style="display:block; font-size:0.78rem; color:var(--text-muted); margin-bottom:0.35rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">Select
+          Ratification Status:</label>
+        <select id="gov-select-status" class="input-text" style="width:100%;">
+          <option value="APPROVED_NATIONAL_CODE">APPROVED_NATIONAL_CODE (Ratified &amp; Active Across All CPSEs)
+          </option>
+          <option value="COMMITTEE_EVALUATION">COMMITTEE_EVALUATION (Under Inter-Ministerial Review)</option>
+          <option value="CPSE_REVIEW">CPSE_REVIEW (Referred to Plant Data Stewards)</option>
+          <option value="AI_RECOMMENDED">AI_RECOMMENDED (Algorithmic Proposal)</option>
+          <option value="REJECTED">REJECTED (Distinct / Separate Material)</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom:1rem;">
+        <label
+          style="display:block; font-size:0.78rem; color:var(--text-muted); margin-bottom:0.35rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">Reviewing
+          Officer Name / Designation:</label>
+        <input type="text" id="gov-input-actor" class="input-text" style="width:100%;"
+          value="Dr. Ananya Sen (Chief General Manager - Materials)">
+      </div>
+
+      <div style="margin-bottom:1rem;">
+        <label
+          style="display:block; font-size:0.78rem; color:var(--text-muted); margin-bottom:0.35rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">Governing
+          Body / CPSE:</label>
+        <input type="text" id="gov-input-org" class="input-text" style="width:100%;"
+          value="National Material Standardization Directorate (NMSD)">
+      </div>
+
+      <div style="margin-bottom:1.5rem;">
+        <label
+          style="display:block; font-size:0.78rem; color:var(--text-muted); margin-bottom:0.35rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">Technical
+          Remarks &amp; Specification Ratification Notes:</label>
+        <textarea id="gov-input-remarks" class="input-text"
+          style="width:100%; height:75px; resize:none;">Technical compatibility verified across participating refineries and power plants. Approved for collaborative procurement.</textarea>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:0.75rem;">
+        <button class="btn btn-secondary modal-close-btn">Cancel</button>
+        <button id="btn-submit-gov-action" class="btn btn-primary">Submit &amp; Record in Audit Log</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-brand">National Unified Material Master Framework (NUMM) &bull; Government of India</div>
+    <div>AI-Powered 'One Nation – One Material Code' &bull; Central Public Sector Enterprises Procurement Harmonization
+    </div>
+    <div style="margin-top:6px;">SAP S/4HANA &amp; ECC Integration Ready &bull; National Material Standardization
+      Directorate (NMSD) &bull; Dept. of Public Enterprises</div>
+    <div style="margin-top:8px; font-size:0.68rem; color:rgba(255,255,255,0.3);">
+      This portal is intended for official use by authorized CPSE and Government personnel only. &bull;
+      <a href="#">Accessibility Statement</a> &bull;
+      <a href="#">Privacy Policy</a> &bull;
+      <a href="#">Terms of Use</a>
+    </div>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,764 @@
+"""
+Real-world simulated CPSE Material Masters across 10 major enterprises.
+Illustrates duplication, fragmented naming, code divergence, and procurement cost variance.
+"""
+
+CPSE_RAW_MATERIALS = [
+    # -------------------------------------------------------------
+    # CLUSTER 1: Gate Valve 4" 150# CS A216 WCB Flanged RF OS&Y
+    # -------------------------------------------------------------
+    {
+        "id": "MAT-001",
+        "cpse": "ONGC",
+        "legacy_code": "31045821",
+        "description": "VLV GATE FLGD 4IN 150# CS A216 WCB RF OS&Y",
+        "uom": "EA",
+        "unit_price_inr": 18500,
+        "annual_procurement_qty": 420,
+        "stock_on_hand": 85,
+        "plant_location": "Hazira Processing Complex, Gujarat",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-03-15",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-002",
+        "cpse": "IOCL",
+        "legacy_code": "MAT-GLV-004-150",
+        "description": "GATE VALVE 4 INCH CLASS 150 FLANGED END ASTM A216 GR WCB RAISED FACE BOLTED BONNET",
+        "uom": "NOS",
+        "unit_price_inr": 21200,
+        "annual_procurement_qty": 650,
+        "stock_on_hand": 140,
+        "plant_location": "Panipat Refinery, Haryana",
+        "sap_mat_type": "ZROH",
+        "last_procurement_date": "2026-05-10",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-003",
+        "cpse": "GAIL",
+        "legacy_code": "GAIL-VLV-4-150-CS",
+        "description": "VALVE, GATE, 100MM NB, ASME 150#, BODY WCB, RF ENDS TO ASME B16.5",
+        "uom": "NUM",
+        "unit_price_inr": 22400,
+        "annual_procurement_qty": 280,
+        "stock_on_hand": 45,
+        "plant_location": "Vijaipur Gas Processing Plant, MP",
+        "sap_mat_type": "ZROH",
+        "last_procurement_date": "2026-01-20",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-004",
+        "cpse": "NTPC",
+        "legacy_code": "NTPC-44019283",
+        "description": "CS GATE VALVE 100 NB 150 LBS FLGD WCB OS&Y",
+        "uom": "NOS",
+        "unit_price_inr": 23500,
+        "annual_procurement_qty": 350,
+        "stock_on_hand": 110,
+        "plant_location": "Singrauli Super Thermal Power, UP",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-04-18",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-005",
+        "cpse": "BPCL",
+        "legacy_code": "BP-V-0415-WCB",
+        "description": "VALVE GATE FLANGE 4\" 150 LBS BODY CS A216 WCB TRIM 13CR OS&Y BB",
+        "uom": "EA",
+        "unit_price_inr": 19800,
+        "annual_procurement_qty": 310,
+        "stock_on_hand": 60,
+        "plant_location": "Kochi Refinery, Kerala",
+        "sap_mat_type": "ZROH",
+        "last_procurement_date": "2026-06-02",
+        "status": "ACTIVE"
+    },
+
+    # -------------------------------------------------------------
+    # CLUSTER 2: Seamless Pipe 6" SCH 40 ASTM A106 Gr B Bevelled End
+    # -------------------------------------------------------------
+    {
+        "id": "MAT-006",
+        "cpse": "IOCL",
+        "legacy_code": "PIP-CS-06-040",
+        "description": "PIPE CS SMLS 6 INCH SCH 40 ASTM A106 GR B BEVELLED END",
+        "uom": "MTR",
+        "unit_price_inr": 4850,
+        "annual_procurement_qty": 4500,
+        "stock_on_hand": 620,
+        "plant_location": "Mathura Refinery, UP",
+        "sap_mat_type": "ROH",
+        "last_procurement_date": "2026-02-11",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-007",
+        "cpse": "BPCL",
+        "legacy_code": "BP-PIP-150-40",
+        "description": "SEAMLESS CS PIPE 150MM NB SCH 40 A106B BE",
+        "uom": "M",
+        "unit_price_inr": 5100,
+        "annual_procurement_qty": 3200,
+        "stock_on_hand": 450,
+        "plant_location": "Mumbai Refinery, Maharashtra",
+        "sap_mat_type": "ROH",
+        "last_procurement_date": "2026-04-05",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-008",
+        "cpse": "ONGC",
+        "legacy_code": "32018844",
+        "description": "CS SMLS PIPE 6IN SCH 40 A106-B BEV",
+        "uom": "MTR",
+        "unit_price_inr": 4700,
+        "annual_procurement_qty": 6000,
+        "stock_on_hand": 1200,
+        "plant_location": "Mumbai High Asset, Offshore",
+        "sap_mat_type": "ROH",
+        "last_procurement_date": "2026-07-22",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-009",
+        "cpse": "GAIL",
+        "legacy_code": "GAIL-PIP-6S40",
+        "description": "LINE PIPE, CS SEAMLESS, 6\" NB X SCH 40, ASTM A106 GR.B, BE ENDS",
+        "uom": "MTR",
+        "unit_price_inr": 5250,
+        "annual_procurement_qty": 2800,
+        "stock_on_hand": 310,
+        "plant_location": "Pata Petrochemical Complex, UP",
+        "sap_mat_type": "ROH",
+        "last_procurement_date": "2026-03-30",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-010",
+        "cpse": "SAIL",
+        "legacy_code": "SAIL-P-640106",
+        "description": "PIPE, CS SMLS, SIZE 150 MM NB, SCH 40, SPEC ASTM A 106 GRADE B",
+        "uom": "MTR",
+        "unit_price_inr": 4950,
+        "annual_procurement_qty": 1800,
+        "stock_on_hand": 280,
+        "plant_location": "Bhilai Steel Plant, Chhattisgarh",
+        "sap_mat_type": "ROH",
+        "last_procurement_date": "2026-05-18",
+        "status": "ACTIVE"
+    },
+
+    # -------------------------------------------------------------
+    # CLUSTER 3: Deep Groove Ball Bearing 6310-2RS C3 (50x110x27 mm)
+    # -------------------------------------------------------------
+    {
+        "id": "MAT-011",
+        "cpse": "BHEL",
+        "legacy_code": "BHEL-BRG-63102RS",
+        "description": "DEEP GROOVE BALL BEARING 6310 2RS C3 SKF/FAG",
+        "uom": "NOS",
+        "unit_price_inr": 3450,
+        "annual_procurement_qty": 1400,
+        "stock_on_hand": 380,
+        "plant_location": "Haridwar Heavy Electrical Equipment Plant, UK",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-02-28",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-012",
+        "cpse": "SAIL",
+        "legacy_code": "SAIL-M-55201",
+        "description": "BALL BRG DGBB 6310-2RS1/C3 (50X110X27 MM)",
+        "uom": "EA",
+        "unit_price_inr": 3800,
+        "annual_procurement_qty": 2100,
+        "stock_on_hand": 520,
+        "plant_location": "Rourkela Steel Plant, Odisha",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-04-12",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-013",
+        "cpse": "COAL_INDIA",
+        "legacy_code": "CIL-BRG-6310",
+        "description": "BEARING 6310-2RS-C3 50MM BORE DEEP GROOVE",
+        "uom": "PC",
+        "unit_price_inr": 4100,
+        "annual_procurement_qty": 1850,
+        "stock_on_hand": 410,
+        "plant_location": "Central Coalfields Ltd, Ranchi",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-06-19",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-014",
+        "cpse": "NTPC",
+        "legacy_code": "NTPC-6310-C3",
+        "description": "BEARING, BALL, RADIAL, DEEP GROOVE, 6310 2RS C3, 50X110X27MM",
+        "uom": "NOS",
+        "unit_price_inr": 3600,
+        "annual_procurement_qty": 950,
+        "stock_on_hand": 190,
+        "plant_location": "Ramagundam STPP, Telangana",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-01-15",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-015",
+        "cpse": "NMDC",
+        "legacy_code": "NMDC-MECH-BRG-6310",
+        "description": "BALL BEARING 6310-2RS C3 CLEARANCE DGBB RUBBER SEAL",
+        "uom": "NOS",
+        "unit_price_inr": 3950,
+        "annual_procurement_qty": 650,
+        "stock_on_hand": 130,
+        "plant_location": "Bailadila Iron Ore Mine, Chhattisgarh",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-03-24",
+        "status": "ACTIVE"
+    },
+
+    # -------------------------------------------------------------
+    # CLUSTER 4: 11kV XLPE Cable 3 Core x 240 sq.mm Aluminium Armoured
+    # -------------------------------------------------------------
+    {
+        "id": "MAT-016",
+        "cpse": "POWERGRID",
+        "legacy_code": "PGCIL-CBL-11-3-240",
+        "description": "XLPE POWER CABLE 3C X 240 SQMM 11KV AL ARMOURED IS 7098",
+        "uom": "MTR",
+        "unit_price_inr": 2150,
+        "annual_procurement_qty": 35000,
+        "stock_on_hand": 4200,
+        "plant_location": "Northern Region-I Substation, Delhi NCR",
+        "sap_mat_type": "ZROH",
+        "last_procurement_date": "2026-06-10",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-017",
+        "cpse": "NTPC",
+        "legacy_code": "NTPC-E-11K-240",
+        "description": "11KV CABLE 3CX240 SQ.MM AL XLPE ARMOURED STRANDED",
+        "uom": "MTR",
+        "unit_price_inr": 2320,
+        "annual_procurement_qty": 18000,
+        "stock_on_hand": 2100,
+        "plant_location": "Kaniha Super Thermal, Odisha",
+        "sap_mat_type": "ZROH",
+        "last_procurement_date": "2026-05-25",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-018",
+        "cpse": "SAIL",
+        "legacy_code": "SAIL-EL-11240",
+        "description": "CABLE, 11 KV (E), 3 CORE X 240 SQ MM, COND AL, XLPE INSULATED, ARMOURED TO IS:7098 (PART-2)",
+        "uom": "MTR",
+        "unit_price_inr": 2400,
+        "annual_procurement_qty": 12000,
+        "stock_on_hand": 1800,
+        "plant_location": "Bokaro Steel Plant, Jharkhand",
+        "sap_mat_type": "ZROH",
+        "last_procurement_date": "2026-04-02",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-019",
+        "cpse": "COAL_INDIA",
+        "legacy_code": "CIL-CBL-11K-240",
+        "description": "11 KV 3X240 SQMM ALUMINIUM XLPE ARMOURED MINING CABLE",
+        "uom": "MTR",
+        "unit_price_inr": 2480,
+        "annual_procurement_qty": 14000,
+        "stock_on_hand": 2600,
+        "plant_location": "Eastern Coalfields, Sanctoria, WB",
+        "sap_mat_type": "ZROH",
+        "last_procurement_date": "2026-07-15",
+        "status": "ACTIVE"
+    },
+
+    # -------------------------------------------------------------
+    # CLUSTER 5: Weld Neck Flange 4" Class 150 SCH 40 ASTM A105 RF
+    # -------------------------------------------------------------
+    {
+        "id": "MAT-020",
+        "cpse": "ONGC",
+        "legacy_code": "33029110",
+        "description": "FLG WN 4IN 150# SCH 40 ASTM A105 RF",
+        "uom": "EA",
+        "unit_price_inr": 3100,
+        "annual_procurement_qty": 1200,
+        "stock_on_hand": 340,
+        "plant_location": "Uran Gas Plant, Maharashtra",
+        "sap_mat_type": "ROH",
+        "last_procurement_date": "2026-05-30",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-021",
+        "cpse": "IOCL",
+        "legacy_code": "FLG-WN-04-150-CS",
+        "description": "WELD NECK FLANGE 100 NB CL 150 SCH 40 A105 RAISED FACE",
+        "uom": "NOS",
+        "unit_price_inr": 3450,
+        "annual_procurement_qty": 1600,
+        "stock_on_hand": 410,
+        "plant_location": "Koyali Refinery, Vadodara, Gujarat",
+        "sap_mat_type": "ROH",
+        "last_procurement_date": "2026-04-14",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-022",
+        "cpse": "NTPC",
+        "legacy_code": "NTPC-FLG-4-150",
+        "description": "FLANGE WELD NECK 4 INCH 150 LBS RF SCH 40 ASTM A105",
+        "uom": "NOS",
+        "unit_price_inr": 3600,
+        "annual_procurement_qty": 900,
+        "stock_on_hand": 220,
+        "plant_location": "Vindhyachal Super Thermal, MP",
+        "sap_mat_type": "ROH",
+        "last_procurement_date": "2026-03-08",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-023",
+        "cpse": "BPCL",
+        "legacy_code": "BP-FLG-WN4150",
+        "description": "CS FLANGE WN 100MM CLASS 150 SCH 40 RF ASTM A-105",
+        "uom": "EA",
+        "unit_price_inr": 3300,
+        "annual_procurement_qty": 850,
+        "stock_on_hand": 180,
+        "plant_location": "Bina Refinery, MP",
+        "sap_mat_type": "ROH",
+        "last_procurement_date": "2026-06-25",
+        "status": "ACTIVE"
+    },
+
+    # -------------------------------------------------------------
+    # CLUSTER 6: Heavy Conveyor Belting 1200mm NN 4-Ply 800/4 (5+2 DIN-X)
+    # -------------------------------------------------------------
+    {
+        "id": "MAT-024",
+        "cpse": "COAL_INDIA",
+        "legacy_code": "CIL-BLT-1200-800",
+        "description": "CONVEYOR BELT 1200MM WIDTH NN 4-PLY 800/4 5+2 DIN-X",
+        "uom": "MTR",
+        "unit_price_inr": 8800,
+        "annual_procurement_qty": 22000,
+        "stock_on_hand": 3400,
+        "plant_location": "Mahanadi Coalfields, Sambalpur, Odisha",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-05-15",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-025",
+        "cpse": "NMDC",
+        "legacy_code": "NMDC-CNV-1200-NN",
+        "description": "BELT CONVEYOR 1200 MM NYLON-NYLON 800/4 TOP 5MM BTM 2MM GRADE X",
+        "uom": "MTR",
+        "unit_price_inr": 9200,
+        "annual_procurement_qty": 8500,
+        "stock_on_hand": 1100,
+        "plant_location": "Donimalai Iron Ore Mine, Karnataka",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-06-30",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-026",
+        "cpse": "SAIL",
+        "legacy_code": "SAIL-CV-120800",
+        "description": "CONVEYOR BELTING, NN FABRIC, WIDTH 1200 MM, RATING 800/4 KN/M, COVER 5+2 MM, GRADE X TO IS 1891",
+        "uom": "MTR",
+        "unit_price_inr": 9450,
+        "annual_procurement_qty": 14000,
+        "stock_on_hand": 1950,
+        "plant_location": "Durgapur Steel Plant, WB",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-04-20",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-027",
+        "cpse": "NTPC",
+        "legacy_code": "NTPC-CHP-BLT-1200",
+        "description": "BELT, CONVEYOR, 1200MM WIDE, NN 800/4, 5MM TOP X 2MM BOTTOM RUBBER COVER GRADE M24/DIN-X",
+        "uom": "MTR",
+        "unit_price_inr": 9600,
+        "annual_procurement_qty": 11000,
+        "stock_on_hand": 1450,
+        "plant_location": "Korba Super Thermal Power, Chhattisgarh",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-03-12",
+        "status": "ACTIVE"
+    },
+
+    # -------------------------------------------------------------
+    # CLUSTER 7: Spiral Wound Gasket 4" 150# SS316 with Flexible Graphite
+    # -------------------------------------------------------------
+    {
+        "id": "MAT-028",
+        "cpse": "IOCL",
+        "legacy_code": "GKT-SWG-04-150",
+        "description": "SPIRAL WOUND GASKET 4 INCH 150 LBS SS316 WITH GRAPHITE FILLER ASME B16.20",
+        "uom": "NOS",
+        "unit_price_inr": 820,
+        "annual_procurement_qty": 4500,
+        "stock_on_hand": 950,
+        "plant_location": "Paradip Refinery, Odisha",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-05-18",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-029",
+        "cpse": "ONGC",
+        "legacy_code": "34091200",
+        "description": "GKT SWG 4IN 150# SS316/GRAPHITE CS OUTER RING",
+        "uom": "EA",
+        "unit_price_inr": 780,
+        "annual_procurement_qty": 5200,
+        "stock_on_hand": 1200,
+        "plant_location": "Ankleshwar Asset, Gujarat",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-06-22",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-030",
+        "cpse": "BPCL",
+        "legacy_code": "BP-GKT-SW-100-150",
+        "description": "SW GASKET 100 NB CL.150 SS 316 / EXFOLIATED GRAPHITE ASME B16.20",
+        "uom": "EA",
+        "unit_price_inr": 850,
+        "annual_procurement_qty": 3800,
+        "stock_on_hand": 820,
+        "plant_location": "Kochi Refinery, Kerala",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-04-29",
+        "status": "ACTIVE"
+    },
+
+    # -------------------------------------------------------------
+    # STANDALONE / UNHARMONIZED ITEMS REQUIRING MATCHING / REVIEW
+    # -------------------------------------------------------------
+    {
+        "id": "MAT-031",
+        "cpse": "BHEL",
+        "legacy_code": "BHEL-VLV-BALL-2-300",
+        "description": "BALL VALVE 2 INCH 300# FLANGED A216 WCB FULL BORE LEVER OPERATED",
+        "uom": "NOS",
+        "unit_price_inr": 14200,
+        "annual_procurement_qty": 180,
+        "stock_on_hand": 35,
+        "plant_location": "Bhopal Heavy Electricals, MP",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-05-12",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-032",
+        "cpse": "GAIL",
+        "legacy_code": "GAIL-BLV-50-300",
+        "description": "VLV, BALL, 50MM NB, ASME CL 300, CS BODY WCB, FLANGED RF, FB",
+        "uom": "NUM",
+        "unit_price_inr": 15100,
+        "annual_procurement_qty": 140,
+        "stock_on_hand": 28,
+        "plant_location": "Dabhol LNG Terminal, Maharashtra",
+        "sap_mat_type": "ZROH",
+        "last_procurement_date": "2026-04-08",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-033",
+        "cpse": "ONGC",
+        "legacy_code": "31049920",
+        "description": "VLV BALL FLGD 2IN 300# CS WCB RF FB",
+        "uom": "EA",
+        "unit_price_inr": 13900,
+        "annual_procurement_qty": 220,
+        "stock_on_hand": 52,
+        "plant_location": "Hazira Complex, Gujarat",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-07-01",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-034",
+        "cpse": "POWERGRID",
+        "legacy_code": "PGCIL-TRF-BRG-7312",
+        "description": "ANGULAR CONTACT BALL BEARING 7312 BECBM SKF (60X130X31 MM)",
+        "uom": "NOS",
+        "unit_price_inr": 8900,
+        "annual_procurement_qty": 240,
+        "stock_on_hand": 45,
+        "plant_location": "Western Region Substation, Nagpur",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-06-11",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-035",
+        "cpse": "NTPC",
+        "legacy_code": "NTPC-BRG-7312B",
+        "description": "BEARING, ANGULAR CONTACT, 7312-B-MP, BRASS CAGE, 60MM BORE",
+        "uom": "NOS",
+        "unit_price_inr": 9200,
+        "annual_procurement_qty": 180,
+        "stock_on_hand": 30,
+        "plant_location": "Kahalgaon Super Thermal, Bihar",
+        "sap_mat_type": "ERSA",
+        "last_procurement_date": "2026-03-19",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-036",
+        "cpse": "IOCL",
+        "legacy_code": "PIP-SS-02-040S",
+        "description": "PIPE SS SMLS 2 INCH SCH 40S ASTM A312 TP316L BEVELLED END",
+        "uom": "MTR",
+        "unit_price_inr": 6200,
+        "annual_procurement_qty": 1200,
+        "stock_on_hand": 210,
+        "plant_location": "Haldia Refinery, WB",
+        "sap_mat_type": "ROH",
+        "last_procurement_date": "2026-06-14",
+        "status": "ACTIVE"
+    },
+    {
+        "id": "MAT-037",
+        "cpse": "BPCL",
+        "legacy_code": "BP-SS-PIP-50-40S",
+        "description": "STAINLESS STEEL SEAMLESS PIPE 50MM NB SCH 40S A312-316L BE",
+        "uom": "M",
+        "unit_price_inr": 6450,
+        "annual_procurement_qty": 950,
+        "stock_on_hand": 180,
+        "plant_location": "Mumbai Refinery, Maharashtra",
+        "sap_mat_type": "ROH",
+        "last_procurement_date": "2026-05-20",
+        "status": "ACTIVE"
+    }
+]
+
+# Standard Common National Material Master Definitions
+# Formed by consolidating and harmonizing the clusters above
+NATIONAL_MASTER_CATALOG = [
+    {
+        "cnmc": "IN-NMC-8481-VLVG-100-WCB-4",
+        "category": "VALVES",
+        "unspsc": "40141600",
+        "hsn_code": "8481.80.30",
+        "standard_short_desc": "VALVE, GATE, 100MM NB, 150#, WCB, RF, OS&Y",
+        "standard_long_desc": "GATE VALVE, NOMINAL SIZE 100MM NB (4 INCH), ASME CLASS 150, BODY MATERIAL ASTM A216 GR WCB, TRIM 13CR (API TRIM 8), END CONNECTION FLANGED RAISED FACE (RF) TO ASME B16.5, OUTSIDE SCREW & YOKE (OS&Y), BOLTED BONNET, DESIGN TO API 600 / ASME B16.34",
+        "standard_uom": "EA",
+        "attributes": {
+            "item_type": "GATE VALVE",
+            "size": "100MM NB (4 INCH)",
+            "size_numeric_mm": 100,
+            "rating": "ASME CLASS 150",
+            "material_grade": "ASTM A216 GR WCB",
+            "end_connection": "FLANGED RAISED FACE (RF)",
+            "standard": "API 600 / ASME B16.34",
+            "bonnet_type": "BOLTED BONNET OS&Y"
+        },
+        "harmonization_status": "APPROVED_NATIONAL_CODE",
+        "governance": {
+            "approved_by": "National Material Standardization Directorate (NMSD)",
+            "approval_date": "2026-04-10",
+            "version": "1.2",
+            "ratified_cpse_count": 5
+        },
+        "mapped_cpse_items": ["MAT-001", "MAT-002", "MAT-003", "MAT-004", "MAT-005"],
+        "benchmark_price_inr": 18500,
+        "annual_national_demand": 2010
+    },
+    {
+        "cnmc": "IN-NMC-7304-PIPS-150-A106-9",
+        "category": "PIPES_TUBES",
+        "unspsc": "40171500",
+        "hsn_code": "7304.19.10",
+        "standard_short_desc": "PIPE, CS SMLS, 150MM NB, SCH 40, A106-B, BE",
+        "standard_long_desc": "CARBON STEEL SEAMLESS PIPE, NOMINAL SIZE 150MM NB (6 INCH), WALL THICKNESS SCHEDULE 40 (7.11 MM), MATERIAL SPECIFICATION ASTM A106 GRADE B, ENDS BEVELLED TO ASME B16.25, TESTED ACCORDING TO ASME B36.10M",
+        "standard_uom": "MTR",
+        "attributes": {
+            "item_type": "SEAMLESS PIPE",
+            "size": "150MM NB (6 INCH)",
+            "size_numeric_mm": 150,
+            "rating": "SCHEDULE 40 (7.11 MM)",
+            "material_grade": "ASTM A106 GRADE B",
+            "end_connection": "BEVELLED ENDS (BE)",
+            "standard": "ASME B36.10M / ASTM A106",
+            "bonnet_type": "N/A"
+        },
+        "harmonization_status": "APPROVED_NATIONAL_CODE",
+        "governance": {
+            "approved_by": "National Material Standardization Directorate (NMSD)",
+            "approval_date": "2026-03-25",
+            "version": "1.1",
+            "ratified_cpse_count": 5
+        },
+        "mapped_cpse_items": ["MAT-006", "MAT-007", "MAT-008", "MAT-009", "MAT-010"],
+        "benchmark_price_inr": 4700,
+        "annual_national_demand": 18300
+    },
+    {
+        "cnmc": "IN-NMC-8482-BRGD-050-6310-2",
+        "category": "BEARINGS",
+        "unspsc": "31171500",
+        "hsn_code": "8482.10.11",
+        "standard_short_desc": "BRG, DGBB, 6310-2RS1/C3, 50X110X27 MM",
+        "standard_long_desc": "RADIAL DEEP GROOVE BALL BEARING, DESIGNATION 6310-2RS1/C3, BORE 50 MM, OUTER DIAMETER 110 MM, WIDTH 27 MM, INTERNAL RADIAL CLEARANCE C3, CONTACT RUBBER SEALS BOTH SIDES (2RS), HIGH-CARBON CHROMIUM STEEL",
+        "standard_uom": "EA",
+        "attributes": {
+            "item_type": "DEEP GROOVE BALL BEARING",
+            "size": "50MM BORE (50X110X27 MM)",
+            "size_numeric_mm": 50,
+            "rating": "CLEARANCE C3 / RADIAL LOAD",
+            "material_grade": "CHROME STEEL (100CR6 / SAE 52100)",
+            "end_connection": "DOUBLE RUBBER SEAL (2RS1)",
+            "standard": "ISO 15 / DIN 625-1",
+            "bonnet_type": "N/A"
+        },
+        "harmonization_status": "APPROVED_NATIONAL_CODE",
+        "governance": {
+            "approved_by": "National Material Standardization Directorate (NMSD)",
+            "approval_date": "2026-04-02",
+            "version": "1.0",
+            "ratified_cpse_count": 5
+        },
+        "mapped_cpse_items": ["MAT-011", "MAT-012", "MAT-013", "MAT-014", "MAT-015"],
+        "benchmark_price_inr": 3450,
+        "annual_national_demand": 6950
+    },
+    {
+        "cnmc": "IN-NMC-8544-CBLX-240-11KV-6",
+        "category": "CABLES_ELECTRICAL",
+        "unspsc": "26121600",
+        "hsn_code": "8544.60.90",
+        "standard_short_desc": "CBL, 11KV, 3CX240 SQMM, AL, XLPE, ARMD",
+        "standard_long_desc": "CROSS-LINKED POLYETHYLENE (XLPE) INSULATED HEAVY DUTY POWER CABLE, VOLTAGE GRADE 11 KV (UE/E), 3 CORE X 240 SQ.MM, STRANDED COMPACTED ALUMINIUM CONDUCTOR, EXTRUDED SEMI-CONDUCTING SCREEN, GALVANIZED FLAT STEEL ARMOURED, ST2 PVC OUTER SHEATH, CONFORMING TO IS:7098 (PART 2)",
+        "standard_uom": "MTR",
+        "attributes": {
+            "item_type": "XLPE POWER CABLE",
+            "size": "3C X 240 SQ.MM",
+            "size_numeric_mm": 240,
+            "rating": "VOLTAGE GRADE 11 KV",
+            "material_grade": "STRANDED ALUMINIUM (EC GRADE)",
+            "end_connection": "ROUND/FLAT STEEL WIRE ARMOURED",
+            "standard": "IS:7098 PART 2",
+            "bonnet_type": "N/A"
+        },
+        "harmonization_status": "APPROVED_NATIONAL_CODE",
+        "governance": {
+            "approved_by": "National Material Standardization Directorate (NMSD)",
+            "approval_date": "2026-05-14",
+            "version": "1.0",
+            "ratified_cpse_count": 4
+        },
+        "mapped_cpse_items": ["MAT-016", "MAT-017", "MAT-018", "MAT-019"],
+        "benchmark_price_inr": 2150,
+        "annual_national_demand": 79000
+    },
+    {
+        "cnmc": "IN-NMC-7307-FLGW-100-A105-3",
+        "category": "FLANGES_FITTINGS",
+        "unspsc": "40171600",
+        "hsn_code": "7307.21.00",
+        "standard_short_desc": "FLANGE, WN, 100MM NB, 150#, SCH 40, A105, RF",
+        "standard_long_desc": "WELD NECK FLANGE, NOMINAL SIZE 100MM NB (4 INCH), ASME CLASS 150, MATCHING PIPE WALL THICKNESS SCHEDULE 40, MATERIAL FORGED CARBON STEEL ASTM A105, RAISED FACE (RF) FINISH 125-250 AARH, CONFORMING TO ASME B16.5",
+        "standard_uom": "EA",
+        "attributes": {
+            "item_type": "WELD NECK FLANGE",
+            "size": "100MM NB (4 INCH)",
+            "size_numeric_mm": 100,
+            "rating": "ASME CLASS 150 / SCH 40",
+            "material_grade": "FORGED CS ASTM A105",
+            "end_connection": "RAISED FACE (RF) ASME B16.5",
+            "standard": "ASME B16.5",
+            "bonnet_type": "N/A"
+        },
+        "harmonization_status": "APPROVED_NATIONAL_CODE",
+        "governance": {
+            "approved_by": "National Material Standardization Directorate (NMSD)",
+            "approval_date": "2026-04-20",
+            "version": "1.0",
+            "ratified_cpse_count": 4
+        },
+        "mapped_cpse_items": ["MAT-020", "MAT-021", "MAT-022", "MAT-023"],
+        "benchmark_price_inr": 3100,
+        "annual_national_demand": 4550
+    },
+    {
+        "cnmc": "IN-NMC-8428-BLTC-1200-800-8",
+        "category": "MINING_CONVEYORS",
+        "unspsc": "24101700",
+        "hsn_code": "8428.33.00",
+        "standard_short_desc": "BELT, CONVEYOR, 1200MM, NN 800/4, 5+2, DIN-X",
+        "standard_long_desc": "HEAVY DUTY INDUSTRIAL CONVEYOR BELT, NOMINAL WIDTH 1200 MM, NYLON-NYLON (NN) 4-PLY CARCASS, TENSILE RATING 800 KN/M, TOP COVER 5.0 MM, BOTTOM COVER 2.0 MM, COVER GRADE DIN-X / IS 1891 GRADE M24 HEAVY ABRASION RESISTANT",
+        "standard_uom": "MTR",
+        "attributes": {
+            "item_type": "CONVEYOR BELTING",
+            "size": "WIDTH 1200 MM",
+            "size_numeric_mm": 1200,
+            "rating": "800/4 KN/M (4 PLY)",
+            "material_grade": "NYLON-NYLON (NN) FABRIC + GRADE X RUBBER",
+            "end_connection": "TOP 5MM + BTM 2MM COVERS",
+            "standard": "DIN 22102 / IS 1891",
+            "bonnet_type": "N/A"
+        },
+        "harmonization_status": "APPROVED_NATIONAL_CODE",
+        "governance": {
+            "approved_by": "National Material Standardization Directorate (NMSD)",
+            "approval_date": "2026-05-02",
+            "version": "1.0",
+            "ratified_cpse_count": 4
+        },
+        "mapped_cpse_items": ["MAT-024", "MAT-025", "MAT-026", "MAT-027"],
+        "benchmark_price_inr": 8800,
+        "annual_national_demand": 55500
+    },
+    {
+        "cnmc": "IN-NMC-8481-VLVB-050-WCB-1",
+        "category": "VALVES",
+        "unspsc": "40141600",
+        "hsn_code": "8481.80.30",
+        "standard_short_desc": "VALVE, BALL, 50MM NB, 300#, WCB, RF, FB",
+        "standard_long_desc": "BALL VALVE, NOMINAL SIZE 50MM NB (2 INCH), ASME CLASS 300, FULL BORE (FB), BODY ASTM A216 WCB, BALL SS316, SEATS PTFE, FLANGED RAISED FACE TO ASME B16.5, DESIGN TO API 6D / ISO 14313",
+        "standard_uom": "EA",
+        "attributes": {
+            "item_type": "BALL VALVE",
+            "size": "50MM NB (2 INCH)",
+            "size_numeric_mm": 50,
+            "rating": "ASME CLASS 300 FULL BORE",
+            "material_grade": "ASTM A216 GR WCB / SS316 BALL",
+            "end_connection": "FLANGED RAISED FACE (RF)",
+            "standard": "API 6D / ASME B16.34",
+            "bonnet_type": "SPLIT BODY LEVER OPERATED"
+        },
+        "harmonization_status": "AI_RECOMMENDED",
+        "governance": {
+            "approved_by": "Pending Committee Review",
+            "approval_date": "2026-09-01",
+            "version": "0.9-DRAFT",
+            "ratified_cpse_count": 3
+        },
+        "mapped_cpse_items": ["MAT-031", "MAT-032", "MAT-033"],
+        "benchmark_price_inr": 13900,
+        "annual_national_demand": 540
+    }
+]
